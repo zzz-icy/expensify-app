@@ -18,3 +18,7 @@ button {
 button:disabled{  //The :disabled selector matches every disabled element
     cursor: default;
 }
+
+.is-active { 
+font-weight: bold;
+}

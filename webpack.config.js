@@ -28,7 +28,8 @@ module.exports = {
     },
     devtool: 'cheap-module-eval-source-map',
     devServer: {
-        contentBase: path.join(__dirname, 'public')
+        contentBase: path.join(__dirname, 'public'),
+        historyApiFallback: true,  // for all unknown 404 not found, to always serve up index.html file
     }
 };
 
