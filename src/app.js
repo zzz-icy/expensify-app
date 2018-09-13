@@ -18,4 +18,4 @@ import './styles/styles.scss';
 //     );
 // };
 
-ReactDOM.render(<IndecisionApp />, document.getElementById('app'));
+ReactDOM.render(<p> This is my boilerplate!</p>, document.getElementById('app'));
