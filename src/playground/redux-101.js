@@ -19,6 +19,8 @@ import { createStore, bindActionCreators } from 'redux';
 // deconstructuring
 
 // Data validation is ideally handled in the component and not in an action. It may not make sense now, but once you've ingreated Redux into React it'll become more apparent why it was removed.
+
+// action generators
 const incrementCount = ({ incrementBy = 1 } = {}) => ({
     type: 'INCREMENT',
     incrementBy
@@ -38,7 +40,17 @@ const setCount = ({ count } = {}) => ({
     count
 });
 
-const store = createStore((state = { count: 0 }, action) => {
+// Reducers
+// 1. pure function
+// below is not a pure function, return value not just depends on the input b, but also a
+// let a = 10;
+// const add = (b) => {
+//     return a + b;
+// }
+// also do not want to change variable outside the function scope
+// 2. never directly change states or action
+
+const countReducer = (state = { count: 0 }, action) => {
     // console.log('running...');
     switch (action.type) {
         case 'INCREMENT':
@@ -65,7 +77,9 @@ const store = createStore((state = { count: 0 }, action) => {
 
     }
 
-});
+}
+// the first argument is a function
+const store = createStore(countReducer);
 // everytime do something when the states change
 const unsubscribe = store.subscribe(() => {
     console.log(store.getState());
