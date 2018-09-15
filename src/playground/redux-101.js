@@ -1,4 +1,4 @@
-import { createStore, bindActionCreators } from 'redux';
+import { createStore } from 'redux';
 
 // const add = (data) => {
 //     return data.a + data.b;
