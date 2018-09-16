@@ -7,6 +7,7 @@ const ExpenseListFilters = (props) => {
     // use react dev tool to see, besides filters, also has a props called dispatch
     return (
         <div>
+            {/*controlled input*/}
             <input
                 type='text'
                 value={props.filters.text}
@@ -24,7 +25,7 @@ const ExpenseListFilters = (props) => {
                 {
                     (e) => {
                         if (e.target.value === 'date') { props.dispatch(sortByDate()) }
-                        if (e.target.value === 'amount') { props.dispatch(sortByAmount()) }
+                        else if (e.target.value === 'amount') { props.dispatch(sortByAmount()) }
                     }
                 }
             >
