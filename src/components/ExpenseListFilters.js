@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { setTextFilter } from '../actions/filters';
+import { setTextFilter, sortByDate, sortByAmount } from '../actions/filters';
 
 const ExpenseListFilters = (props) => {
     // console.log(props);
@@ -17,6 +17,21 @@ const ExpenseListFilters = (props) => {
             >
             </input>
             {/*Warning: Failed form propType: You provided a `value` prop to a form field without an `onChange` handler. This will render a read-only field. If the field should be mutable use `defaultValue`. Otherwise, set either `onChange` or `readOnly`.*/}
+
+            <select
+                value={props.filters.sortBy}
+                onChange=
+                {
+                    (e) => {
+                        if (e.target.value === 'date') { props.dispatch(sortByDate()) }
+                        if (e.target.value === 'amount') { props.dispatch(sortByAmount()) }
+                    }
+                }
+            >
+                <option value='date'>Date</option>
+                <option value='amount'>Amount</option>
+
+            </select>
         </div>
     );
 }

@@ -11,4 +11,6 @@ const ExpenseDashboardPage = () => (
         <ExpenseList />
     </div>
 );
+
+
 export default ExpenseDashboardPage;
