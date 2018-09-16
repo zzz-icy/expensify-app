@@ -4,6 +4,9 @@ import React from 'react';
 import ReactDOM from 'react-dom';
 import 'normalize.css/normalize.css';
 // makes browsers render all elements more consistently and in line with modern standards. It precisely targets only the styles that need normalizing.
+import { Provider } from 'react-redux';
+// https://github.com/reduxjs/react-redux
+// We're going to be using the 'Provider' component once at the root of our application(app.js) and we're going to be using 'connect' for every single component that needs to connect to the redux store.
 import './styles/styles.scss';
 import { addExpense } from './actions/expenses';
 import { setTextFilter } from './actions/filters';
@@ -11,20 +14,33 @@ import getVisibleExpenses from './selectors/expenses';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
 
+
 const store = configureStore();
 
 store.dispatch(addExpense({ description: 'Water Bill' }));
 store.dispatch(addExpense({ description: 'Gas Bill' }));
 
-store.dispatch(setTextFilter('bill'));
-const state = store.getState();
+store.dispatch(setTextFilter('water'));
+
+
+// we use mapStateToProps, will rerender
+// setTimeout(
+//     () => { store.dispatch(setTextFilter('bill')) }
+//     , 2000);
+// const state = store.getState();
 
 
 
 console.log(getVisibleExpenses(state.expenses, state.filters));
 // props.childern
 
-ReactDOM.render(<AppRouter />, document.getElementById('app'));
+const jsx = (
+    <Provider store={store}>
+        <AppRouter />
+    </Provider>
+);
+
+ReactDOM.render(jsx, document.getElementById('app'));
 
 
 // <Switch>
