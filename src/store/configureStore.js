@@ -3,6 +3,9 @@ import { createStore, combineReducers } from 'redux';
 import expensesReducer from '../reducers/expenses';
 import filtersReducer from '../reducers/filters';
 
+// will do the following in the app.js
+// const store = configureStore();
+
 export default () => {
     const store = createStore(
         // register each reducer here
