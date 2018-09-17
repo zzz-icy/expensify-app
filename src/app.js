@@ -9,10 +9,11 @@ import { Provider } from 'react-redux';
 // We're going to be using the 'Provider' component once at the root of our application(app.js) and we're going to be using 'connect' for every single component that needs to connect to the redux store.
 import './styles/styles.scss';
 import { addExpense } from './actions/expenses';
-import { setTextFilter } from './actions/filters';
+// import { setTextFilter } from './actions/filters';
 // import getVisibleExpenses from './selectors/expenses';
 import AppRouter from './routers/AppRouter';
 import configureStore from './store/configureStore';
+import 'react-dates/initialize';
 
 
 const store = configureStore();
