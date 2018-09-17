@@ -6,8 +6,14 @@ class ExpenseForm extends React.Component {
     state = {
         description: '',
         note: '',
+        amount: '',
     };
-
+    onAmountChange = (e) => {
+        const amount = e.target.value;
+        if (amount.match(/^\d*(\.\d{0,2})?$/)) {
+            this.setState(() => ({ amount }));
+        }
+    }
     onDescriptionChange = (e) => {  // define method, do not need const
         const description = e.target.value
         this.setState(() => ({ description }));
@@ -36,10 +42,11 @@ class ExpenseForm extends React.Component {
                         onChange={this.onDescriptionChange}
                     />
                     <input
-                        type='number'
+                        type='text'
                         placeholder='Amount'
                         autoFocus
                         value={this.state.amount}
+                        onChange={this.onAmountChange}
 
                     />
                     <textarea
