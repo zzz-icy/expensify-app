@@ -1,6 +1,4 @@
 import React from 'react';
-import { connect } from 'react-redux';
-import { removeExpense } from '../actions/expenses';
 import { Link } from 'react-router-dom';
 
 const ExpenseListItem = (props) => {
@@ -10,17 +8,8 @@ const ExpenseListItem = (props) => {
         <div>
             <Link to={`/edit/${props.data.id}`}><h3> {props.data.description} </h3></Link>
             <p> {props.data.amount} - {props.data.createdAt}</p>
-            <button
-                onClick={
-                    () => {
-                        props.dispatch(removeExpense({ id: props.data.id }));// need to pass in an object
 
-                    }
-                }
-            >
-                Remove
-            </button>
-        </div >
+        </div>
     );
 };
 
@@ -41,4 +30,4 @@ const ExpenseListItem = (props) => {
 // };
 
 // we do not need the states in store, just want the dispatch, no arguments passed in 
-export default connect()(ExpenseListItem);
+export default ExpenseListItem;
