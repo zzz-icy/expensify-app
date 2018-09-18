@@ -1,13 +1,14 @@
 import React from 'react';
 import { connect } from 'react-redux';
 import { removeExpense } from '../actions/expenses';
+import { Link } from 'react-router-dom';
 
 const ExpenseListItem = (props) => {
     // const expenses = props.expenses;
     // console.log(props);
     return (
         <div>
-            <h3> {props.data.description} </h3>
+            <Link to={`/edit/${props.data.id}`}><h3> {props.data.description} </h3></Link>
             <p> {props.data.amount} - {props.data.createdAt}</p>
             <button
                 onClick={
@@ -19,7 +20,7 @@ const ExpenseListItem = (props) => {
             >
                 Remove
             </button>
-        </div>
+        </div >
     );
 };
 

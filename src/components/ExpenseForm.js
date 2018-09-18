@@ -8,14 +8,27 @@ import 'react-dates/lib/css/_datepicker.css';
 
 class ExpenseForm extends React.Component {
     // we are gonna use local compoennt states to track the user input
-    state = {
-        description: '',
-        note: '',
-        amount: '',
-        createdAt: moment(),
-        calendarFocused: false,
-        error: '',
-    };
+    // we have to use constructor here 
+    // cause wo have to access props together with states
+    constructor(props) {
+        super(props);
+        this.state = {
+            description: props.expense ? props.expense.description : '',
+            note: props.expense ? props.expense.note : '',
+            amount: props.expense ? (props.expense.amount / 100).toString() : '',//props.expense.amount is number, but here is text
+            createdAt: props.expense ? moment(props.expense.createdAt) : moment(),//props.expense.createdAt is timeStamp
+            calendarFocused: false,
+            error: '',
+        };
+    }
+    // state = {
+    //     description: '',
+    //     note: '',
+    //     amount: '',
+    //     createdAt: moment(),
+    //     calendarFocused: false,
+    //     error: '',
+    // };
     onFocusChange = ({ focused }) => {
 
         this.setState(() => ({ calendarFocused: focused }));
@@ -58,6 +71,7 @@ class ExpenseForm extends React.Component {
         } else {
             this.setState(() => ({ error: '' }));
             const expense = {
+                // ...this.props.expense, // have to check if this.props.expense exists
                 description: this.state.description,
                 note: this.state.note,
                 amount: parseFloat(this.state.amount, 10) * 100,  // in cents
@@ -69,6 +83,8 @@ class ExpenseForm extends React.Component {
     }
 
     render() {
+        // console.log(this.props.expense);
+
         return (
             <div>
                 {this.state.error && <p>{this.state.error}</p>}

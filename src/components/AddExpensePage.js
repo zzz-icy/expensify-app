@@ -6,7 +6,7 @@ import { addExpense } from '../actions/expenses'; // will get error TypeError: (
 const AddExpensePage = (props) => (
     <div>
         <h1> This is my AddExpensePage component!</h1>
-        <ExpenseForm
+        <ExpenseForm  // this component can be reused for edit expense
             onSubmit={(expense) => {
                 // console.log(expense);
                 props.dispatch(addExpense(expense));
