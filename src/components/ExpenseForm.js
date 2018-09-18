@@ -14,6 +14,7 @@ class ExpenseForm extends React.Component {
         amount: '',
         createdAt: moment(),
         calendarFocused: false,
+        error: '',
     };
     onFocusChange = ({ focused }) => {
 
@@ -21,14 +22,17 @@ class ExpenseForm extends React.Component {
 
     };
     onDateChange = (createdAt) => {
-
-        this.setState(() => ({ createdAt }));
-
+        if (createdAt) {  // add this condition so that user can not clear the date value
+            this.setState(() => ({ createdAt }));
+        }
     };
     onAmountChange = (e) => {
         const amount = e.target.value;
         // see the explanation for the regular expression at the bottom of this file
-        if (amount.match(/^\d*(\.\d{0,2})?$/)) {
+        //d{1,} won't allow dot come first
+        // have o add "!amount ||""  allow user to clear the input
+        // because the match no longer match an empty string
+        if (!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)) {
             this.setState(() => ({ amount }));
         }
     }
@@ -46,12 +50,21 @@ class ExpenseForm extends React.Component {
         // this.setState(() => ({ note:e.target.value }));
         // either way works fine
     };
+    onSubmit = (e) => {
+        e.preventDefault();// prevent the whole page refresh
+        if (!this.state.description || !this.state.amount) {
+            const error = 'Please provide description and amount!'
+            this.setState(() => ({ error }));
+        } else {
+            this.setState(() => ({ error: '' }));
+        }
+    }
 
     render() {
         return (
             <div>
-                Expense Form
-                <form>
+                {this.state.error && <p>{this.state.error}</p>}
+                <form onSubmit={this.onSubmit} >
                     <input
                         type='text'
                         placeholder='Description'
