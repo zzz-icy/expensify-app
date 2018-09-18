@@ -57,6 +57,14 @@ class ExpenseForm extends React.Component {
             this.setState(() => ({ error }));
         } else {
             this.setState(() => ({ error: '' }));
+            const expense = {
+                description: this.state.description,
+                note: this.state.note,
+                amount: parseFloat(this.state.amount, 10) * 100,  // in cents
+                createdAt: this.state.createdAt.valueOf(),// we need timeStamp here
+            }
+            this.props.onSubmit(expense);
+            // console.log('submitted!');
         }
     }
 
