@@ -9,7 +9,8 @@
     "serve": "live-server public/",
     "build": "webpack",
     "build-babel": "babel src/app.js --out-file=public/scripts/app.js --presets=env,react --watch",
-    "dev-server": "webpack-dev-server"
+    "dev-server": "webpack-dev-server",
+    "test": "jest"
   },
   "dependencies": {
     "babel-cli": "6.24.1",
@@ -28,6 +29,7 @@
     "react-addons-shallow-compare": "^15.6.2",
     "react-dates": "^18.0.4",
     "react-dom": "16.0.0",
+    "react-icons": "^3.0.5",
     "react-modal": "2.2.2",
     "react-redux": "^5.0.7",
     "react-router-dom": "4.2.2",
@@ -38,5 +40,8 @@
     "validator": "8.0.0",
     "webpack": "3.1.0",
     "webpack-dev-server": "2.5.1"
+  },
+  "devDependencies": {
+    "jest": "^23.6.0"
   }
 }

@@ -7,7 +7,7 @@ const getVisibleExpenses = (expenses, { text, sortBy, startDate, endDate }) => {
         (item) => {
             // const startDateMatch = typeof startDate !== 'number' || item.createdAt >= startDate;
             const createdAtMoment = moment(item.createdAt);
-            // createdAt is timestamp. needs to be converted to moment time
+            // createdAt is timestamp. needs to be converted to moment instance
             const startDateMatch = startDate ? startDate.isSameOrBefore(createdAtMoment, 'day') : true;
 
             // const endDateMatch = typeof endDate !== 'number' || item.createdAt <= endDate;
