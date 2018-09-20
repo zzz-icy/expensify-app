@@ -1,8 +1,13 @@
 // import the function to be tested
 // test file will run through babel set up, so wecan use ES6 import
+// command: yarn test -- --watch   (--watch is for test not for yarn)
+// jest Global, no need to require or import to use the global methods
+// expect has its own page 
+// test(name, fn, timeout)
+// Also under the alias: it(name, fn, timeout)
 
+// The first argument is the test name; the second argument is a function that contains the expectations to test. The third argument (optional) is timeout (in milliseconds) for specifying how long to wait before aborting. Note: The default timeout is 5 seconds.
 import { addExpense, editExpense, removeExpense } from '../../actions/expenses';
-import uuid from 'uuid';
 
 test('should setup remove expense action object', () => {
     const action = removeExpense({ id: '123abc' });

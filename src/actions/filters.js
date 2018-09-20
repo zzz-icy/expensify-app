@@ -1,10 +1,6 @@
 // actions generators for filters
-// EDIT_EXPENSE
-export const editExpense = (id, updates) => ({
-    type: 'EDIT_EXPENSE',
-    id,
-    updates
-});
+
+
 // SET_TEXT_FILTER
 export const setTextFilter = (text = '') => ({
     type: 'SET_TEXT_FILTER',
