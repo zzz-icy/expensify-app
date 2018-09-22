@@ -5,18 +5,25 @@ import ExpenseListItem from './ExpenseListItem';
 import selectExpenses from '../selectors/expenses';
 
 
-const ExpenseList = (props) => {
+export const ExpenseList = (props) => {
     // console.log(props.expenses);
     const expenses = props.expenses;
     return (
         <div>
-            <h1> Expense List </h1>
-            {expenses.map(
-                (item) => (<ExpenseListItem data={item} key={item.id} />)
-                //<ExpenseListItem data={item} {...item} />
-                // if the data is passed in like {...item}, in ExpenseListItem will can use the destructure version
-            )
+            {
+                props.expenses.length === 0 ?
+                    (
+                        <p>No expenses</p>
+                    ) :
+                    (
+                        expenses.map(
+                            (item) => (<ExpenseListItem data={item} key={item.id} />)
+                            //<ExpenseListItem data={item} {...item} />
+                            // if the data is passed in like {...item}, in ExpenseListItem will can use the destructure version
+                        )
+                    )
             }
+
         </div>
     )
 };
