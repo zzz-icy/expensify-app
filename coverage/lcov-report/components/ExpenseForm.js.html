@@ -1,0 +1,500 @@
+<!doctype html>
+<html lang="en">
+<head>
+    <title>Code coverage report for components/ExpenseForm.js</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="../prettify.css" />
+    <link rel="stylesheet" href="../base.css" />
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <style type='text/css'>
+        .coverage-summary .sorter {
+            background-image: url(../sort-arrow-sprite.png);
+        }
+    </style>
+</head>
+<body>
+<div class='wrapper'>
+  <div class='pad1'>
+    <h1>
+      <a href="../index.html">All files</a> / <a href="index.html">components</a> ExpenseForm.js
+    </h1>
+    <div class='clearfix'>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">28.57% </span>
+        <span class="quiet">Statements</span>
+        <span class='fraction'>8/28</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">60% </span>
+        <span class="quiet">Branches</span>
+        <span class='fraction'>12/20</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">25% </span>
+        <span class="quiet">Functions</span>
+        <span class='fraction'>4/16</span>
+      </div>
+      <div class='fl pad1y space-right2'>
+        <span class="strong">33.33% </span>
+        <span class="quiet">Lines</span>
+        <span class='fraction'>7/21</span>
+      </div>
+    </div>
+  </div>
+  <div class='status-line low'></div>
+<pre><table class="coverage">
+<tr><td class="line-count quiet">1
+2
+3
+4
+5
+6
+7
+8
+9
+10
+11
+12
+13
+14
+15
+16
+17
+18
+19
+20
+21
+22
+23
+24
+25
+26
+27
+28
+29
+30
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62
+63
+64
+65
+66
+67
+68
+69
+70
+71
+72
+73
+74
+75
+76
+77
+78
+79
+80
+81
+82
+83
+84
+85
+86
+87
+88
+89
+90
+91
+92
+93
+94
+95
+96
+97
+98
+99
+100
+101
+102
+103
+104
+105
+106
+107
+108
+109
+110
+111
+112
+113
+114
+115
+116
+117
+118
+119
+120
+121
+122
+123
+124
+125
+126
+127
+128
+129
+130
+131
+132
+133
+134
+135
+136
+137
+138
+139
+140
+141
+142
+143
+144
+145
+146</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
+import moment from 'moment';
+import { SingleDatePicker } from 'react-dates';
+// const date = new Date();
+// const now = moment(); // initialize
+// console.log(now.format('MMM Do, YYYY'));
+&nbsp;
+class ExpenseForm extends React.Component {
+    // we are gonna use local compoennt states to track the user input
+    // we have to use constructor here 
+    // cause wo have to access props together with states
+    constructor(props) {
+        super(props);
+        this.state = {
+            description: props.expense ? props.expense.description : '',
+            note: props.expense ? props.expense.note : '',
+            amount: props.expense ? (props.expense.amount / 100).toString() : '',//props.expense.amount is number, but here is text
+            createdAt: props.expense ? moment(props.expense.createdAt) : moment(),//props.expense.createdAt is timeStamp
+            calendarFocused: false,
+            error: '',
+        };
+    }
+    // state = {
+    //     description: '',
+    //     note: '',
+    //     amount: '',
+    //     createdAt: moment(),
+    //     calendarFocused: false,
+    //     error: '',
+    // };
+    onFocusChange = <span class="fstat-no" title="function not covered" >({</span> focused }) =&gt; {
+&nbsp;
+<span class="cstat-no" title="statement not covered" >        this.setState(<span class="fstat-no" title="function not covered" >()</span> =&gt; (<span class="cstat-no" title="statement not covered" >{ calendarFocused: focused })</span>);</span>
+&nbsp;
+    };
+    onDateChange = <span class="fstat-no" title="function not covered" >(c</span>reatedAt) =&gt; {
+<span class="cstat-no" title="statement not covered" >        if (createdAt) {  // add this condition so that user can not clear the date value</span>
+<span class="cstat-no" title="statement not covered" >            this.setState(<span class="fstat-no" title="function not covered" >()</span> =&gt; (<span class="cstat-no" title="statement not covered" >{ createdAt })</span>);</span>
+        }
+    };
+    onAmountChange = <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {
+        const amount = <span class="cstat-no" title="statement not covered" >e.target.value;</span>
+        // see the explanation for the regular expression at the bottom of this file
+        //d{1,} won't allow dot come first
+        // have o add "!amount ||""  allow user to clear the input
+        // because the match no longer match an empty string
+<span class="cstat-no" title="statement not covered" >        if (!amount || amount.match(/^\d{1,}(\.\d{0,2})?$/)) {</span>
+<span class="cstat-no" title="statement not covered" >            this.setState(<span class="fstat-no" title="function not covered" >()</span> =&gt; (<span class="cstat-no" title="statement not covered" >{ amount })</span>);</span>
+        }
+    }
+    onDescriptionChange = <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {  // define method, do not need const
+        const description = <span class="cstat-no" title="statement not covered" >e.target.value</span>
+<span class="cstat-no" title="statement not covered" >        this.setState(<span class="fstat-no" title="function not covered" >()</span> =&gt; (<span class="cstat-no" title="statement not covered" >{ description })</span>);</span>
+    };
+    onNoteChange = <span class="fstat-no" title="function not covered" >(e</span>) =&gt; {  // define method, do not need const
+        const note = <span class="cstat-no" title="statement not covered" >e.target.value</span>
+<span class="cstat-no" title="statement not covered" >        this.setState(<span class="fstat-no" title="function not covered" >()</span> =&gt; (<span class="cstat-no" title="statement not covered" >{ note })</span>);</span>
+        // will not work if we use e.target.value in the callback, have to pull it out as a const first
+        // this.setState(() =&gt; ({ note:e.target.value }));
+        // work around, use the following first
+        // e.persisit();
+        // this.setState(() =&gt; ({ note:e.target.value }));
+        // either way works fine
+    };
+    onSubmit = (e) =&gt; {
+        e.preventDefault();// prevent the whole page refresh
+        <span class="missing-if-branch" title="else path not taken" >E</span>if (!this.state.description || <span class="branch-1 cbranch-no" title="branch not covered" >!this.state.amount)</span> {
+            const error = 'Please provide description and amount!'
+            this.setState(() =&gt; ({ error }));
+        } else {
+<span class="cstat-no" title="statement not covered" >            this.setState(<span class="fstat-no" title="function not covered" >()</span> =&gt; (<span class="cstat-no" title="statement not covered" >{ error: '' })</span>);</span>
+            const expense = <span class="cstat-no" title="statement not covered" >{</span>
+                // ...this.props.expense, // have to check if this.props.expense exists
+                description: this.state.description,
+                note: this.state.note,
+                amount: parseFloat(this.state.amount, 10) * 100,  // in cents
+                createdAt: this.state.createdAt.valueOf(),// we need timeStamp here
+            }
+<span class="cstat-no" title="statement not covered" >            this.props.onSubmit(expense);</span>
+            // console.log('submitted!');
+        }
+    }
+&nbsp;
+    render() {
+        // console.log(this.props.expense);
+&nbsp;
+        return (
+            &lt;div&gt;
+                {this.state.error &amp;&amp; &lt;p&gt;{this.state.error}&lt;/p&gt;}
+                &lt;form onSubmit={this.onSubmit} &gt;
+                    &lt;input
+                        type='text'
+                        placeholder='Description'
+                        autoFocus
+                        value={this.state.description}
+                        onChange={this.onDescriptionChange}
+                    /&gt;
+                    &lt;input
+                        type='text'
+                        placeholder='Amount'
+                        autoFocus
+                        value={this.state.amount}
+                        onChange={this.onAmountChange}
+&nbsp;
+                    /&gt;
+                    &lt;SingleDatePicker
+                        date={this.state.createdAt} // momentPropTypes.momentObj or null
+                        onDateChange={this.onDateChange} // PropTypes.func.isRequired
+                        focused={this.state.calendarFocused} // PropTypes.bool
+                        onFocusChange={this.onFocusChange} // PropTypes.func.isRequired
+                        numberOfMonths={1}
+                        isOutsideRange={<span class="fstat-no" title="function not covered" >()</span> =&gt; { <span class="cstat-no" title="statement not covered" >false </span>}} // so that we can choose past date
+                    /&gt;
+                    &lt;textarea
+                        placeholder='Add a notes for your expense(optional).'
+                        value={this.state.note}
+                        onChange={this.onNoteChange}
+&nbsp;
+                    &gt;
+                    &lt;/textarea&gt;
+                    &lt;button&gt;Add Expense&lt;/button&gt;
+                &lt;/form&gt;
+            &lt;/div&gt;
+        );
+    }
+}
+&nbsp;
+export default ExpenseForm;
+&nbsp;
+// regex explanation
+&nbsp;
+// /^\d*(\.\d{0,2})?$/
+// 
+// ^ asserts position at start of a line
+// \d* matches a digit (equal to [0-9])
+// * Quantifier — Matches between zero and unlimited times, as many times as possible, giving back as needed (greedy)
+// 1st Capturing Group (\.\d{0,2})?
+// ? Quantifier — Matches between zero and one times, as many times as possible, giving back as needed (greedy)
+// \. matches the character . literally (case sensitive)
+// \d{0,2} matches a digit (equal to [0-9])
+// {0,2} Quantifier — Matches between 0 and 2 times, as many times as possible, giving back as needed (greedy)
+// $ asserts position at the end of a line
+// Global pattern flags
+// g modifier: global. All matches (don't return after first match)
+// m modifier: multi line. Causes ^ and $ to match the begin/end of each line (not only begin/end of string)
+&nbsp;</pre></td></tr>
+</table></pre>
+<div class='push'></div><!-- for sticky footer -->
+</div><!-- /wrapper -->
+<div class='footer quiet pad2 space-top1 center small'>
+  Code coverage
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Tue Sep 25 2018 11:30:44 GMT-0500 (Central Daylight Time)
+</div>
+</div>
+<script src="../prettify.js"></script>
+<script>
+window.onload = function () {
+        if (typeof prettyPrint === 'function') {
+            prettyPrint();
+        }
+};
+</script>
+<script src="../sorter.js"></script>
+</body>
+</html>
