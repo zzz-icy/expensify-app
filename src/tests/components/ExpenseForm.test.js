@@ -1,5 +1,7 @@
 import React from 'react';
 import { shallow } from 'enzyme';
+import moment from 'moment';
+import { SingleDatePicker } from 'react-dates';
 import ExpenseForm from '../../components/ExpenseForm';
 import "../setupTests.js";
 import toJSON from 'enzyme-to-json';
@@ -50,7 +52,7 @@ test('should set description on input change', () => {
     expect(wrapper.state('description')).toBe(value);
 });
 
-test('should set note on input change', () => {
+test('should set note on textarea change', () => {
     const value = 'New Note';
     const wrapper = shallow(<ExpenseForm />);
     // to match the 1st input which is for the description
@@ -63,3 +65,60 @@ test('should set note on input change', () => {
     expect(wrapper.state('note')).toBe(value);
 });
 
+test('should set amount with valid input', () => {
+    const value = '23.50';
+    const wrapper = shallow(<ExpenseForm />);
+    wrapper.find('input').at(1).simulate('change', { // pass in object
+        target: { value }
+    });
+    expect(wrapper.state('amount')).toBe(value);
+
+})
+
+test('should not set amount with invalid input', () => {
+    const value = '23.5000';
+    const wrapper = shallow(<ExpenseForm />);
+    wrapper.find('input').at(1).simulate('change', { // pass in object
+        target: { value }
+    });
+    expect(wrapper.state('amount')).toBe('');
+
+})
+test('should call onSubmit props for valid form submission', () => {
+    const onSubmitSpy = jest.fn();
+    const expense = {
+        description: expenses[0].description,
+        note: expenses[0].note,
+        amount: expenses[0].amount,  // in cents
+        createdAt: expenses[0].createdAt, // we need timeStamp here
+    };
+    // this time, have valid input passed in
+    const wrapper = shallow(<ExpenseForm expense={expenses[0]} onSubmit={onSubmitSpy} />);// pass data as needed
+    // simulate the form submission
+    wrapper.find('form').simulate('submit', { preventDefault: () => { } });
+    expect(wrapper.state('error')).toBe('');
+    expect(onSubmitSpy).toHaveBeenLastCalledWith(expense);
+
+    // onSubmitSpy();
+    // expect(onSubmitSpy)..toHaveBeenCalledWith();
+    // .toHaveBeenCalledWith(arg1, arg2, ...)
+});
+
+test('should set new date onDateChange', () => {
+    const now = moment();
+    const wrapper = shallow(<ExpenseForm />);
+    // .prop is from enzyme
+    // import SingleDatePicker above
+    wrapper.find(SingleDatePicker).prop('onDateChange')(now);
+    expect(wrapper.state('createdAt')).toEqual(now);
+});
+
+test('should set new focus onFocusChange', () => {
+    // const now = moment();
+    const wrapper = shallow(<ExpenseForm />);
+    // .prop is from enzyme
+    // import SingleDatePicker above
+    wrapper.find(SingleDatePicker).prop('onFocusChange')({ focused: true });
+    //pay attention to the input format, an object with property of focused
+    expect(wrapper.state('calendarFocused')).toBe(true);
+});
