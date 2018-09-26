@@ -7,7 +7,7 @@ import { addExpense } from '../actions/expenses';
 
 export class AddExpensePage extends React.Component { // export so that we can test the unconnected one
     onSubmit = (expense) => {
-        this.props.onSubmit(expense);
+        this.props.addExpense(expense);
         this.props.history.push('/');
     }
 
@@ -24,7 +24,7 @@ export class AddExpensePage extends React.Component { // export so that we can t
 }
 
 const mapDispatchToProps = (dispatch) => ({
-    onSubmit: (expense) => (dispatch(addExpense(expense))),
+    addExpense: (expense) => (dispatch(addExpense(expense))),
 });
 
 // then we have dispatch as props

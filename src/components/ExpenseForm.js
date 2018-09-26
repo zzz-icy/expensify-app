@@ -76,7 +76,7 @@ class ExpenseForm extends React.Component {
                 amount: parseFloat(this.state.amount, 10) * 100,  // in cents
                 createdAt: this.state.createdAt.valueOf(),// we need timeStamp here
             }
-            this.props.onSubmit(expense);
+            this.props.onSubmit(expense); // these are two different onSubmit method
             // console.log('submitted!');
         }
     }

@@ -9,13 +9,14 @@ import expenses from '../fixtures/expenses';
 // afterEach(fn, timeout)
 // beforeAll(fn, timeout)
 // beforeEach(fn, timeout)
-let onSubmitSpy, history, wrapper;
+let addExpense, history, wrapper;
 // each test can then just focus on using them. also these three become resuable
 beforeEach(() => {
-    onSubmitSpy = jest.fn();
+    addExpense = jest.fn();
     // have to mock the push() method in history object which is a props of the page
     history = { push: jest.fn() };
-    wrapper = shallow(<AddExpensePage onSubmit={onSubmitSpy} history={history} />);
+    // we want to test th two functions are called correctly, so we define it, doesn't have to be the exactly same as the original component
+    wrapper = shallow(<AddExpensePage addExpense={addExpense} history={history} />);
 
 });
 test('should render AddExpensePage correctly', () => {
@@ -32,7 +33,7 @@ test('should handle onSubmit', () => {
     // const wrapper = shallow(<AddExpensePage onSubmit={onSubmitSpy} history={history} />);
     wrapper.find('ExpenseForm').prop('onSubmit')(expenses[0]);
     expect(history.push).toHaveBeenLastCalledWith('/');
-    expect(onSubmitSpy).toHaveBeenLastCalledWith(expenses[0]);
+    expect(addExpense).toHaveBeenLastCalledWith(expenses[0]);
 
 })
 
