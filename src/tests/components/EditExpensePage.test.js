@@ -33,7 +33,7 @@ test('should handle onSubmit', () => {
 });
 
 test('should handle onClick', () => {
-    wrapper.find('button').simulate('click');   // here is not a user action, no simulate
+    wrapper.find('button').simulate('click');   // here is a user action, need to simulate
     expect(removeExpense).toHaveBeenLastCalledWith({ id: expenses[2].id });
     expect(history.push).toHaveBeenLastCalledWith('/');
 
