@@ -2,7 +2,7 @@ const path = require('path'); // 'path' is built-in
 const express = require('express');
 const app = express(); // now we have a express application
 const publicPath = path.join(__dirname, '..', 'public');  // join up the current directory with the public directory
-
+const port = process.evn.PORT || 3000; // process.evn.PORT use whatever heroku provide
 app.use(express.static(publicPath));
 
 // the purpose is:
@@ -17,7 +17,9 @@ app.use(express.static(publicPath));
 app.get('*', (req, res) => {
     res.sendFile(path.join(publicPath, 'index.html'));
 });
+// add this for heroku
+// "start":"node server/server.js"
 
-app.listen(3000, () => {
+app.listen(port, () => {
     console.log('Server is up!');
 });
