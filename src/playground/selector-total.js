@@ -3,7 +3,7 @@ const expenses = [{
     id: '1',
     description: 'bill',
     note: '',
-    amount: 600,
+    amount: 500,
     createdAt: 0,
 
 },
@@ -25,4 +25,13 @@ const expenses = [{
 
 }];
 
-export default expenses;
+const getExpensesTotal = (expenses) => {
+    let i, total;
+    const count = expenses.length;
+    if (count < 1) {
+        return 0;
+    } else {
+        return expenses.reduce((acc, expense) => (acc + expense.amount), 0);
+    }
+}
+console.log(getExpensesTotal(expenses));
