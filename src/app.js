@@ -17,8 +17,9 @@ import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import './styles/styles.scss';
 
-
 const store = configureStore();
+
+// console.log('test'); // to test if source map is still working
 
 // store.dispatch(addExpense({ description: 'Water Bill', amount: 4500 }));
 // store.dispatch(addExpense({ description: 'Gas Bill', createdAt: 1000 }));

@@ -3,6 +3,8 @@
 
 const path = require('path');
 // console.log(path.join(__dirname, 'public'));
+// change to export a function to return webpack conig object
+// so that we can have env to do some logic inside
 module.exports = (env) => {
     const isProduction = env === 'production';
     // console.log('env', env);
@@ -33,7 +35,15 @@ module.exports = (env) => {
                 ]
             }]
         },
-        devtool: 'cheap-module-eval-source-map',
+        // source map is taking a lot of the build size
+        // but still needed in product
+        // can opt for a slow version
+        // it's ok of it's slow for production build
+        // refer to https://webpack.js.org/configuration/devtool/#devtool
+        devtool: isProduction ? 'source-map' : 'cheap-module-eval-source-map',
+        // yarn run build:prod, we will get two files
+        // bundle.js   708 kB   --core js    
+        // bundle.js.map  4.04 MB 
         devServer: {
             contentBase: path.join(__dirname, 'public'),
             historyApiFallback: true,  // for all unknown 404 not found, to always serve up index.html file
