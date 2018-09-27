@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for components/ExpenseList.js</title>
+    <title>Code coverage report for components/EditExpensePage.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -16,32 +16,32 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../index.html">All files</a> / <a href="index.html">components</a> ExpenseList.js
+      <a href="../index.html">All files</a> / <a href="index.html">components</a> EditExpensePage.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">83.33% </span>
+        <span class="strong">58.33% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>5/6</span>
+        <span class='fraction'>7/12</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>0/0</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">66.67% </span>
+        <span class="strong">37.5% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>2/3</span>
+        <span class='fraction'>3/8</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">83.33% </span>
+        <span class="strong">70% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>5/6</span>
+        <span class='fraction'>7/10</span>
       </div>
     </div>
   </div>
-  <div class='status-line high'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -91,23 +91,26 @@
 46
 47
 48
-49</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+49
+50
+51
+52</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
-<span class="cline-any cline-yes">2x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-yes">1x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
@@ -122,72 +125,78 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">1x</span>
+<span class="cline-any cline-no">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
 import { connect } from 'react-redux';
-// connect([mapStateToProps], [mapDispatchToProps], [mergeProps], [options])
-import ExpenseListItem from './ExpenseListItem';
-import selectExpenses from '../selectors/expenses';
+import { editExpense, removeExpense } from '../actions/expenses';
+import ExpenseForm from './ExpenseForm';
 &nbsp;
+export class EditExpensePage extends React.Component {
+    // console.log(props);
+    /* /:id will dynamically match whater comes after the forward slash, id is gonna be in the props.match.params, so we can take that value and fetch data from database */
 &nbsp;
-export const ExpenseList = (props) =&gt; {
-    // console.log(props.expenses);
-    const expenses = props.expenses;
-    return (
-        &lt;div&gt;
-            {
-                props.expenses.length === 0 ?
-                    (
-                        &lt;p&gt;No expenses&lt;/p&gt;
-                    ) :
-                    (
-                        expenses.map(
-                            (item) =&gt; (&lt;ExpenseListItem data={item} key={item.id} /&gt;)
-                            //&lt;ExpenseListItem data={item} {...item} /&gt;
-                            // if the data is passed in like {...item}, in ExpenseListItem will can use the destructure version
-                        )
-                    )
-            }
+    onSubmit = (expense) =&gt; {
+        this.props.editExpense(this.props.expense.id, expense);
+        this.props.history.push('/');
+    };
 &nbsp;
-        &lt;/div&gt;
-    )
+    onRemove = () =&gt; {
+        this.props.removeExpense({ id: this.props.expense.id });// need to pass in an object
+        this.props.history.push('/');
+    };
+    render() {
+        return (
+            &lt;div&gt;
+&nbsp;
+                {/* Editing expense with the ID of {this.props.expense.id} */}
+&nbsp;
+                {/* Editing expense with the ID of {props.expense.id}, ?can not use props.expense.id above, why?*/}
+                &lt;ExpenseForm
+                    expense={this.props.expense}
+                    onSubmit={this.onSubmit}
+                /&gt;
+                &lt;button
+                    onClick={this.onRemove}
+                &gt;
+                    Remove
+            &lt;/button&gt;
+            &lt;/div&gt;
+        );
+    }
+&nbsp;
 };
+const mapDispatchToProps = <span class="fstat-no" title="function not covered" >(d</span>ispatch, props) =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+    editExpense: <span class="fstat-no" title="function not covered" >(e</span>xpense, id) =&gt; (<span class="cstat-no" title="statement not covered" >dispatch(editExpense(expense, id)))</span>,
+    removeExpense: <span class="fstat-no" title="function not covered" >(d</span>ata) =&gt; (<span class="cstat-no" title="statement not covered" >dispatch(removeExpense(data)))</span>,
+});
 &nbsp;
-// [mapStateToProps(state, [ownProps]): stateProps] (Function):  If this argument is specified, the new component will subscribe to Redux store updates. This means that any time the store is updated, mapStateToProps will be called. The results of mapStateToProps must be a plain object, which will be merged into the component’s props. If you don't want to subscribe to store updates, pass null or undefined in place of mapStateToProps.
-const mapStateToProps = <span class="fstat-no" title="function not covered" >(s</span>tate) =&gt; {
-<span class="cstat-no" title="statement not covered" >    return ({</span>
-        // use selector here
-        // we always want the filtered result to present
-        expenses: selectExpenses(state.expenses, state.filters),  // have access to it as props
-        // filters: state.filters,
-    });
-};
+// If your mapDispatchToProps function is declared as taking two parameters, it will be called with dispatch as the first parameter and the props passed to the connected component as the second parameter, and will be re-invoked whenever the connected component receives new props. (The second parameter is normally referred to as ownProps by convention.)
 &nbsp;
-export default connect(
-    // provide information about what we want connect
-    // like we might only need a subset of the huge amount of states in store
-    mapStateToProps,
-)(ExpenseList);
-// because connect() returns a function, not directly a HOC
+const mapStateToProps = <span class="fstat-no" title="function not covered" >(s</span>tate, props) =&gt; (<span class="cstat-no" title="statement not covered" >{</span>
+    expense: state.expenses.find((<span class="fstat-no" title="function not covered" >(i</span>tem) =&gt; { <span class="cstat-no" title="statement not covered" >return item.id === props.match.params.id </span>})),
+});
+&nbsp;
 // It does not modify the component class passed to it; instead, it returns a new, connected component class for you to use.
-&nbsp;
-&nbsp;</pre></td></tr>
+export default connect(mapStateToProps, mapDispatchToProps)(EditExpensePage);</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->

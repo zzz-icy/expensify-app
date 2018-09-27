@@ -3,20 +3,29 @@ import { connect } from 'react-redux';
 import { DateRangePicker } from 'react-dates';
 import { setTextFilter, sortByDate, sortByAmount, setStartDate, setEndDate } from '../actions/filters';
 // stateless function to class, props => this.props
-class ExpenseListFilters extends React.Component {
+export class ExpenseListFilters extends React.Component {
     // console.log(props);
     // use react dev tool to see, besides filters, also has a props called dispatch
     state = {
         calendarFocused: null,
     };
+
     onDatesChange = ({ startDate, endDate }) => {
-        this.props.dispatch(setStartDate(startDate));
-        this.props.dispatch(setEndDate(endDate));
+        this.props.setStartDate(startDate);
+        this.props.setEndDate(endDate);
 
     };
     onFocusChange = (calendarFocused) => {
         this.setState(() => ({ calendarFocused }));
     };
+    onSortChange = (e) => {
+        if (e.target.value === 'date') { this.props.sortByDate() }
+        else if (e.target.value === 'amount') { this.props.sortByAmount() }
+    };
+    onTextChange = (e) => {
+        this.props.setTextFilter(e.target.value);
+    };
+
     render() {
         return (
             <div>
@@ -25,22 +34,14 @@ class ExpenseListFilters extends React.Component {
                     type='text'
                     value={this.props.filters.text}
                     // change state in store
-                    onChange={(e) => {
-                        this.props.dispatch(setTextFilter(e.target.value))
-                    }}
+                    onChange={this.onTextChange}
                 >
                 </input>
                 {/*Warning: Failed form propType: You provided a `value` prop to a form field without an `onChange` handler. This will render a read-only field. If the field should be mutable use `defaultValue`. Otherwise, set either `onChange` or `readOnly`.*/}
 
                 <select
                     value={this.props.filters.sortBy}
-                    onChange=
-                    {
-                        (e) => {
-                            if (e.target.value === 'date') { this.props.dispatch(sortByDate()) }
-                            else if (e.target.value === 'amount') { this.props.dispatch(sortByAmount()) }
-                        }
-                    }
+                    onChange={this.onSortChange}
                 >
                     <option value='date'>Date</option>
                     <option value='amount'>Amount</option>
@@ -64,12 +65,15 @@ class ExpenseListFilters extends React.Component {
     };
 }
 
-const mapStateToProps = (state) => {
-    return (
-        {
-            filters: state.filters,
-        }
-    );
-};
+const mapStateToProps = (state) => ({
+    filters: state.filters,
+});
 
-export default connect(mapStateToProps)(ExpenseListFilters);
+const mapDispatchToProps = (dispatch, props) => ({
+    setStartDate: (startDate) => (dispatch(setStartDate(startDate))),
+    setEndDate: (endDate) => (dispatch(setEndDate(endDate))),
+    setTextFilter: (text) => (dispatch(setTextFilter(text))),
+    sortByDate: () => (dispatch(sortByDate())),
+    sortByAmount: () => (dispatch(sortByAmount()))
+});
+export default connect(mapStateToProps, mapDispatchToProps)(ExpenseListFilters);
