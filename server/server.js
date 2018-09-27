@@ -2,7 +2,7 @@ const path = require('path'); // 'path' is built-in
 const express = require('express');
 const app = express(); // now we have a express application
 const publicPath = path.join(__dirname, '..', 'public');  // join up the current directory with the public directory
-const port = process.evn.PORT || 3000; // process.evn.PORT use whatever heroku provide
+const port = process.env.PORT || 3000; // process.evn.PORT use whatever heroku provide
 app.use(express.static(publicPath));
 
 // the purpose is:
