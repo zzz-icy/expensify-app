@@ -1,7 +1,7 @@
 <!doctype html>
 <html lang="en">
 <head>
-    <title>Code coverage report for components/Header.js</title>
+    <title>Code coverage report for selectors/expenses-total.js</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="../prettify.css" />
     <link rel="stylesheet" href="../base.css" />
@@ -16,13 +16,13 @@
 <div class='wrapper'>
   <div class='pad1'>
     <h1>
-      <a href="../index.html">All files</a> / <a href="index.html">components</a> Header.js
+      <a href="../index.html">All files</a> / <a href="index.html">selectors</a> expenses-total.js
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>3/3</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
@@ -32,12 +32,12 @@
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>1/1</span>
+        <span class='fraction'>3/3</span>
       </div>
       <div class='fl pad1y space-right2'>
         <span class="strong">100% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>2/2</span>
+        <span class='fraction'>3/3</span>
       </div>
     </div>
   </div>
@@ -54,44 +54,29 @@
 9
 10
 11
-12
-13
-14
-15
-16
-17</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-yes">1x</span>
-<span class="cline-any cline-yes">1x</span>
+12</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-yes">4x</span>
+<span class="cline-any cline-yes">4x</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">import React from 'react';
-import { NavLink } from 'react-router-dom';
-// https://reacttraining.com/react-router/web/api/NavLink
-&nbsp;
-const Header = () =&gt; (
-    &lt;header&gt;
-        &lt;h1&gt; Expensify&lt;/h1&gt;
-        {/*A special version of the &lt;Link&gt; that will add styling attributes to the rendered element when it matches the current URL.Adde is-active class to sass style file*/}
-&nbsp;
-        &lt;NavLink exact to="/" activeClassName="is-active"&gt; Dashboard&lt;/NavLink&gt;
-        &lt;NavLink to="/create" activeClassName="is-active"&gt; Create Expense&lt;/NavLink&gt;
-        {/* &lt;NavLink to="/edit" activeClassName="is-active"&gt; EditExpensePage&lt;/NavLink&gt; */}
-        &lt;NavLink to="/help" activeClassName="is-active"&gt; Help&lt;/NavLink&gt;
-    &lt;/header&gt;
-);
-&nbsp;
-export default Header;</pre></td></tr>
+<span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">export default (expenses) =&gt; {
+    // with test in advance, we can refactor with confidence
+    // const count = expenses.length;
+    // if (count == 0) {
+    //     return 0;
+    // } else {
+    // return expenses.reduce((acc, expense) =&gt; (acc + expense.amount), 0);
+    return expenses
+        .map(expense =&gt; expense.amount)
+        .reduce((acc, num) =&gt; (acc + num), 0);
+    // }
+}</pre></td></tr>
 </table></pre>
 <div class='push'></div><!-- for sticky footer -->
 </div><!-- /wrapper -->

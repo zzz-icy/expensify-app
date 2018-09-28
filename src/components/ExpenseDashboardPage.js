@@ -8,8 +8,9 @@ import ExpensesSummary from './ExpensesSummary';
 const ExpenseDashboardPage = () => (
     <div>
         This is my ExpenseDashboardPage component!
-        <ExpenseListFilters />
         <ExpensesSummary />
+
+        <ExpenseListFilters />
         <ExpenseList />
     </div>
 );

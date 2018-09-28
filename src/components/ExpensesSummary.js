@@ -4,26 +4,31 @@ import numeral from 'numeral';
 import SelectExpensesTotal from '../selectors/expenses-total';
 import selectExpenses from '../selectors/expenses';
 
-class ExpensesSummary extends React.Component {
+export class ExpensesSummary extends React.Component {
 
 
     render() {
+        const expenseWord = this.props.expensesCount === 1 ? 'expense' : 'expenses';
+        const formattedExpneseTotal = numeral(this.props.expensesTotal / 100).format('$0,0.00');
         return (
             <div>
-                <p>
-                Viewing&nbsp;
-                {this.props.expenses.length}&nbsp;
-                expenses totalling&nbsp;
-                {numeral(SelectExpensesTotal(this.props.expenses) / 100).format('$0,0.00')}&nbsp;
-    
-                </p>
+                <h2>
+                    Viewing&nbsp;
+                {this.props.expensesCount}&nbsp;
+                {expenseWord} totalling&nbsp;
+                {formattedExpneseTotal}&nbsp;
+                </h2>
             </div>
         );
     }
 }
 
-const mapStateToProps = (state, props) => ({
-    expenses: selectExpenses(state.expenses, state.filters)
-});
+const mapStateToProps = (state, props) => {
+    const visibleExpenses = selectExpenses(state.expenses, state.filters);
+    return {
+        expensesCount: visibleExpenses.length,
+        expensesTotal: SelectExpensesTotal(visibleExpenses)
+    };
+};
 
 export default connect(mapStateToProps)(ExpensesSummary);
