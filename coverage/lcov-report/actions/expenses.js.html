@@ -20,28 +20,28 @@
     </h1>
     <div class='clearfix'>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">58.33% </span>
         <span class="quiet">Statements</span>
-        <span class='fraction'>6/6</span>
+        <span class='fraction'>7/12</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">83.33% </span>
+        <span class="strong">0% </span>
         <span class="quiet">Branches</span>
-        <span class='fraction'>5/6</span>
+        <span class='fraction'>0/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Functions</span>
-        <span class='fraction'>3/3</span>
+        <span class='fraction'>3/6</span>
       </div>
       <div class='fl pad1y space-right2'>
-        <span class="strong">100% </span>
+        <span class="strong">50% </span>
         <span class="quiet">Lines</span>
-        <span class='fraction'>4/4</span>
+        <span class='fraction'>5/10</span>
       </div>
     </div>
   </div>
-  <div class='status-line high'></div>
+  <div class='status-line medium'></div>
 <pre><table class="coverage">
 <tr><td class="line-count quiet">1
 2
@@ -73,16 +73,78 @@
 28
 29
 30
-31</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+31
+32
+33
+34
+35
+36
+37
+38
+39
+40
+41
+42
+43
+44
+45
+46
+47
+48
+49
+50
+51
+52
+53
+54
+55
+56
+57
+58
+59
+60
+61
+62</td><td class="line-coverage quiet"><span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">3x</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
-<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-yes">2x</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-yes">3x</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-no">&nbsp;</span>
+<span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span>
@@ -105,23 +167,54 @@
 <span class="cline-any cline-neutral">&nbsp;</span>
 <span class="cline-any cline-neutral">&nbsp;</span></td><td class="text"><pre class="prettyprint lang-js">// Actions for expenses
 import uuid from 'uuid';
-&nbsp;
+import database from '../firebase/firebase';
 // action generators
 // ADD-EXPENSE
 &nbsp;
-export const addExpense = (
-    { description = '', note = '', amount = 0, createdAt = 0 } = {}
-) =&gt; (
-        {
-            type: 'ADD_EXPENSE',
-            expense: {
-                id: uuid(),
-                description,
-                note,
-                amount,
-                createdAt,
-            }
+// export const addExpense = (
+//     { description = '', note = '', amount = 0, createdAt = 0 } = {}
+// ) =&gt; (
+//         {
+//             type: 'ADD_EXPENSE',
+//             expense: {
+//                 id: uuid(),
+//                 description,
+//                 note,
+//                 amount,
+//                 createdAt,
+//             }
+//         });
+&nbsp;
+// we do not need the id generated by uuid(), will use the id generated by firebase, so rewrite the addExpense
+&nbsp;
+export const addExpense = (expense) =&gt; (
+    {
+        type: 'ADD_EXPENSE',
+        expense
+    });
+&nbsp;
+&nbsp;
+export const startAddExpense = <span class="fstat-no" title="function not covered" >(e</span>xpenseData = <span class="branch-0 cbranch-no" title="branch not covered" >{})</span> =&gt; {
+<span class="cstat-no" title="statement not covered" >    return <span class="fstat-no" title="function not covered" >(d</span>ispatch) =&gt; {</span>
+        const {
+            description = <span class="branch-0 cbranch-no" title="branch not covered" >'',</span>
+            note = <span class="branch-0 cbranch-no" title="branch not covered" >'',</span>
+            amount = <span class="branch-0 cbranch-no" title="branch not covered" >0,</span>
+            createdAt = <span class="branch-0 cbranch-no" title="branch not covered" >0</span>
+        } = <span class="cstat-no" title="statement not covered" >expenseData;</span>
+        const expense = <span class="cstat-no" title="statement not covered" >{ description, note, amount, createdAt };</span>
+<span class="cstat-no" title="statement not covered" >        database.ref('expenses').push(expense).then(<span class="fstat-no" title="function not covered" >(r</span>ef) =&gt; { //.then() gets called with the ref, so we have access to the id </span>
+<span class="cstat-no" title="statement not covered" >            dispatch(addExpense(</span>
+                {
+                    id: ref.key,
+                    ...expense
+                }
+            ));
         });
+    }
+};
+&nbsp;
+&nbsp;
 // REMOVE_EXPENSE
 export const removeExpense = ({ id } = <span class="branch-0 cbranch-no" title="branch not covered" >{})</span> =&gt; ({
     type: 'REMOVE_EXPENSE',
@@ -139,7 +232,7 @@ export const editExpense = (id, updates) =&gt; ({
 </div><!-- /wrapper -->
 <div class='footer quiet pad2 space-top1 center small'>
   Code coverage
-  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Oct 01 2018 16:16:45 GMT-0500 (Central Daylight Time)
+  generated by <a href="https://istanbul.js.org/" target="_blank">istanbul</a> at Mon Oct 01 2018 16:39:42 GMT-0500 (Central Daylight Time)
 </div>
 </div>
 <script src="../prettify.js"></script>

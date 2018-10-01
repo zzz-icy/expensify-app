@@ -1,15 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<coverage generated="1538428605069" clover="3.2.0">
-  <project timestamp="1538428605069" name="All files">
-    <metrics statements="116" coveredstatements="102" conditionals="64" coveredconditionals="60" methods="69" coveredmethods="51" elements="249" coveredelements="213" complexity="0" loc="116" ncloc="116" packages="6" files="19" classes="19">
+<coverage generated="1538429982426" clover="3.2.0">
+  <project timestamp="1538429982426" name="All files">
+    <metrics statements="125" coveredstatements="105" conditionals="64" coveredconditionals="55" methods="72" coveredmethods="51" elements="261" coveredelements="211" complexity="0" loc="125" ncloc="125" packages="7" files="20" classes="20">
       <package name="actions">
-        <metrics statements="9" coveredstatements="9" conditionals="7" coveredconditionals="6" methods="8" coveredmethods="8"/>
+        <metrics statements="15" coveredstatements="10" conditionals="7" coveredconditionals="1" methods="11" coveredmethods="8"/>
         <file name="expenses.js" path="/Users/hanzhang/Desktop/my_own_app/react-app/expensify-app/src/actions/expenses.js">
-          <metrics statements="4" coveredstatements="4" conditionals="6" coveredconditionals="5" methods="3" coveredmethods="3"/>
-          <line num="7" count="3" type="stmt"/>
-          <line num="10" count="2" type="stmt"/>
-          <line num="21" count="3" type="cond" truecount="0" falsecount="1"/>
-          <line num="26" count="3" type="stmt"/>
+          <metrics statements="10" coveredstatements="5" conditionals="6" coveredconditionals="0" methods="6" coveredmethods="3"/>
+          <line num="23" count="3" type="stmt"/>
+          <line num="24" count="2" type="stmt"/>
+          <line num="30" count="3" type="cond" truecount="0" falsecount="1"/>
+          <line num="31" count="0" type="stmt"/>
+          <line num="37" count="0" type="stmt"/>
+          <line num="38" count="0" type="stmt"/>
+          <line num="39" count="0" type="stmt"/>
+          <line num="40" count="0" type="stmt"/>
+          <line num="52" count="3" type="cond" truecount="0" falsecount="1"/>
+          <line num="57" count="3" type="stmt"/>
         </file>
         <file name="filters.js" path="/Users/hanzhang/Desktop/my_own_app/react-app/expensify-app/src/actions/filters.js">
           <metrics statements="5" coveredstatements="5" conditionals="1" coveredconditionals="1" methods="5" coveredmethods="5"/>
@@ -21,14 +27,14 @@
         </file>
       </package>
       <package name="components">
-        <metrics statements="71" coveredstatements="57" conditionals="28" coveredconditionals="26" methods="51" coveredmethods="33"/>
+        <metrics statements="71" coveredstatements="56" conditionals="28" coveredconditionals="26" methods="51" coveredmethods="33"/>
         <file name="AddExpensePage.js" path="/Users/hanzhang/Desktop/my_own_app/react-app/expensify-app/src/components/AddExpensePage.js">
-          <metrics statements="5" coveredstatements="4" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
-          <line num="10" count="1" type="stmt"/>
-          <line num="11" count="1" type="stmt"/>
-          <line num="15" count="2" type="stmt"/>
-          <line num="26" count="1" type="stmt"/>
-          <line num="27" count="0" type="stmt"/>
+          <metrics statements="5" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="4" coveredmethods="2"/>
+          <line num="12" count="1" type="stmt"/>
+          <line num="13" count="0" type="stmt"/>
+          <line num="17" count="2" type="stmt"/>
+          <line num="28" count="1" type="stmt"/>
+          <line num="30" count="0" type="stmt"/>
         </file>
         <file name="EditExpensePage.js" path="/Users/hanzhang/Desktop/my_own_app/react-app/expensify-app/src/components/EditExpensePage.js">
           <metrics statements="10" coveredstatements="7" conditionals="0" coveredconditionals="0" methods="8" coveredmethods="3"/>
@@ -122,6 +128,15 @@
           <metrics statements="2" coveredstatements="2" conditionals="0" coveredconditionals="0" methods="1" coveredmethods="1"/>
           <line num="4" count="1" type="stmt"/>
           <line num="5" count="1" type="stmt"/>
+        </file>
+      </package>
+      <package name="firebase">
+        <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+        <file name="firebase.js" path="/Users/hanzhang/Desktop/my_own_app/react-app/expensify-app/src/firebase/firebase.js">
+          <metrics statements="3" coveredstatements="3" conditionals="0" coveredconditionals="0" methods="0" coveredmethods="0"/>
+          <line num="3" count="3" type="stmt"/>
+          <line num="12" count="3" type="stmt"/>
+          <line num="15" count="3" type="stmt"/>
         </file>
       </package>
       <package name="reducers">

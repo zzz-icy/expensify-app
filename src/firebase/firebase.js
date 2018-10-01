@@ -14,6 +14,7 @@ firebase.initializeApp(config);
 // You can reference the root or child location in your Database by calling firebase.database().ref() or firebase.database().ref("child/path").
 const database = firebase.database();
 
+export { database as default, firebase };
 // will overwrite the whole root
 // database.ref().set('this is my data');
 // database.ref('age').set(27);
