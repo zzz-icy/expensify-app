@@ -12,6 +12,7 @@ import configureStore from 'redux-mock-store' //ES6 modules
 import thunk from 'redux-thunk';
 import database from '../../firebase/firebase';
 import expenses from '../fixtures/expenses';
+import "../setupTests.js";
 
 const createMockStore = configureStore([thunk]); // pass in an array of middlewares
 
@@ -105,14 +106,13 @@ test('should add expense to database and store', () => {
         return database.ref(`expenses/${action[0].expense.id}`).once('value');
     }).then((snapshot) => {
         expect(snapshot.val()).toEqual(expenseData);
+        done();
         // Jest will wait until the done callback is called before finishing the test.
         // If done() is never called, the test will fail, which is what you want to happen.
         // If your code uses promises, there is a simpler way to handle asynchronous tests. Just return a promise from your test, and Jest will wait for that promise to resolve. If the promise is rejected, the test will automatically fail.
-        done();
+
     });
     // how to test asynchronous, wait everything to finish
-
-
 });
 
 test('should add expense with default to database and store', () => {
@@ -124,7 +124,6 @@ test('should add expense with default to database and store', () => {
         note: '',
         createdAt: 0
     }
-
     store.dispatch(startAddExpense({})).then(() => {
         const actions = store.getActions();
         expect(actions[0]).toEqual({
@@ -134,7 +133,6 @@ test('should add expense with default to database and store', () => {
                 ...expenseDefaults
             }
         });
-
         return database.ref(`expenses/${action[0].expense.id}`).once('value');
     }).then((snapshot) => {
         expect(snapshot.val()).toEqual(expenseDefaults);

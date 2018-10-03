@@ -2,11 +2,27 @@
 // console.log(__dirname);
 
 const path = require('path');
+const webpack = require('webpack'); // then we have the built-in stuff
+
 // Extract text from a bundle, or bundles, into a separate file.
 const ExtractTextPlugin = require('extract-text-webpack-plugin');
 // console.log(path.join(__dirname, 'public'));
 // change to export a function to return webpack conig object
 // so that we can have env to do some logic inside, eg. for devtool
+
+process.env.NODE_ENV = process.env.NODE_ENV || 'development';
+
+if (process.env.NODE_ENV === 'test') {
+    // it will look for .env file, eg .env.development
+    require('dotenv').config({ path: '.env.test' });
+} else if (process.env.NODE_ENV === 'development') {
+    require('dotenv').config({ path: '.env.development' });
+}
+// automatically set on heroku process.env.NODE_ENV
+// undefined => development
+// we need to set it to test in package.json
+// production will be set automatically by Heroku
+
 module.exports = (env) => {
     const isProduction = env === 'production';
     // console.log('env', env);
@@ -50,7 +66,15 @@ module.exports = (env) => {
             }]
         },
         plugins: [
-            CSSExtract // remember to add link in the index.html for styles.css
+            CSSExtract, // remember to add link in the index.html for styles.css
+            new webpack.DefinePlugin({
+                'process.env.FIREBASE_API_KEY': JSON.stringify(process.env.FIREBASE_API_KEY),
+                'process.env.FIREBASE_AUTH_DOMAIN': JSON.stringify(process.env.FIREBASE_AUTH_DOMAIN),
+                'process.env.FIREBASE_DATABASE_URL': JSON.stringify(process.env.FIREBASE_DATABASE_URL),
+                'process.env.FIREBASE_PROJECT_ID': JSON.stringify(process.env.FIREBASE_PROJECT_ID),
+                'process.env.FIREBASE_STORAGE_BUCKET': JSON.stringify(process.env.FIREBASE_STORAGE_BUCKET),
+                'process.env.FIREBASE_MESSAGING_SENDER_ID': JSON.stringify(process.env.FIREBASE_MESSAGING_SENDER_ID)
+            })
         ],
         // source map is taking a lot of the build size
         // but still needed in product
@@ -71,7 +95,7 @@ module.exports = (env) => {
             publicPath: '/dist/'
         }
     };
-}
+};
 
 
 // loader allows you to customize the behavior of webpack when you load some given files
