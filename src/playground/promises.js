@@ -18,9 +18,11 @@ console.log('before');
 // .then()  register a callback, the callback will be fired when/if the promise resolves
 promise.then((data) => {  // take the data that resolves
     console.log('1', data); // call me when data is ready
-}).catch((error) => {
-    console.log(error);
-});
+    return 'haha'
+}).then((str) => (console.log(str))) // the second does not have access to the data but the returned data from the 1st .then
+    .catch((error) => {
+        console.log(error);
+    });
 
 // .then can take two arguments, two functions, the 2nd will be treated as the catch() call
 // promise.then((data) => {

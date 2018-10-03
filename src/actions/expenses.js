@@ -36,7 +36,8 @@ export const startAddExpense = (expenseData = {}) => {
             createdAt = 0
         } = expenseData;
         const expense = { description, note, amount, createdAt };
-        database.ref('expenses').push(expense).then((ref) => { //.then() gets called with the ref, so we have access to the id 
+        // add return so that we can chain .then() in the test
+        return database.ref('expenses').push(expense).then((ref) => { //.then() gets called with the ref, so we have access to the id 
             dispatch(addExpense(
                 {
                     id: ref.key,
