@@ -175,3 +175,17 @@ test('should setup set expenses action object with data', () => {
         expenses
     });
 });
+
+// data already set in the beforeEach()
+test('should fetch the expenses from firebase', () => {
+    const store = createMockStore({});
+
+    store.dispatch(startSetExpenses()).then(() => {
+        const actions = store.getActions({});
+        expect(actions[0]).toEqual({
+            type: 'SET_EXPENSES',
+            expenses
+        });
+        done();
+    });
+});
