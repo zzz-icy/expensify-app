@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { editExpense, startRemoveExpense } from '../actions/expenses';
+import { startEditExpense, startRemoveExpense } from '../actions/expenses';
 import ExpenseForm from './ExpenseForm';
 
 export class EditExpensePage extends React.Component {
@@ -8,7 +8,7 @@ export class EditExpensePage extends React.Component {
     /* /:id will dynamically match whater comes after the forward slash, id is gonna be in the props.match.params, so we can take that value and fetch data from database */
 
     onSubmit = (expense) => {
-        this.props.editExpense(this.props.expense.id, expense);
+        this.props.startEditExpense(this.props.expense.id, expense);
         this.props.history.push('/');
     };
 
@@ -38,7 +38,7 @@ export class EditExpensePage extends React.Component {
 
 };
 const mapDispatchToProps = (dispatch, props) => ({
-    editExpense: (expense, id) => (dispatch(editExpense(expense, id))),
+    startEditExpense: (id, updates) => (dispatch(startEditExpense(id, updates))),
     startRemoveExpense: (id) => (dispatch(startRemoveExpense(id))),
 });
 

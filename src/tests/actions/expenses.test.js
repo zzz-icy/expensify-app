@@ -7,7 +7,16 @@
 // Also under the alias: it(name, fn, timeout)
 
 // The first argument is the test name; the second argument is a function that contains the expectations to test. The third argument (optional) is timeout (in milliseconds) for specifying how long to wait before aborting. Note: The default timeout is 5 seconds.
-import { addExpense, editExpense, removeExpense, startRemoveExpense, startAddExpense, setExpenses, startSetExpenses } from '../../actions/expenses';
+import {
+    addExpense,
+    startAddExpense,
+    editExpense,
+    startEditExpense,
+    removeExpense,
+    startRemoveExpense,
+    setExpenses,
+    startSetExpenses
+} from '../../actions/expenses';
 import configureStore from 'redux-mock-store' //ES6 modules
 import thunk from 'redux-thunk';
 import database from '../../firebase/firebase';
@@ -53,8 +62,6 @@ xit("skip it for now", () => {
         });
     });
 });
-
-
 test('should setup edit expense action object', () => {
     const action = editExpense('123abc', { amount: 10 });
     expect(action).toEqual({
@@ -65,6 +72,33 @@ test('should setup edit expense action object', () => {
         }
     });
 });
+
+xit('skip it for now', () => {
+    test('should edit data in the  database', () => {
+        const store = createMockStore();
+        const id = expenses[2].id;
+        const updates = {
+            amount: 6000
+        }
+        store.dispatch(startEditExpense(id, updates)).then(() => {
+            const actions = store.getActions();
+            expect(actions[0]).toEqual({
+                type: 'EDIT_EXPENSE',
+                id,
+                updates
+            });
+            return database.ref(`expenses/${id}`).once('value');
+        }).then((snapshot) => {
+            // expect(snapshot.val()).toEqual({
+            //     ...expenses[2],
+            //     ...updates
+            // });
+            expect(snapshot.val().amount).toBe(updates.amount);
+            done();
+        });
+    });
+});
+
 
 // test('should setup add expense action object with provided values', () => {
 //     const expenseData = {
