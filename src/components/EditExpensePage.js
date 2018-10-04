@@ -1,6 +1,6 @@
 import React from 'react';
 import { connect } from 'react-redux';
-import { editExpense, removeExpense } from '../actions/expenses';
+import { editExpense, startRemoveExpense } from '../actions/expenses';
 import ExpenseForm from './ExpenseForm';
 
 export class EditExpensePage extends React.Component {
@@ -13,7 +13,7 @@ export class EditExpensePage extends React.Component {
     };
 
     onRemove = () => {
-        this.props.removeExpense({ id: this.props.expense.id });// need to pass in an object
+        this.props.startRemoveExpense({ id: this.props.expense.id });// need to pass in an object
         this.props.history.push('/');
     };
     render() {
@@ -39,7 +39,7 @@ export class EditExpensePage extends React.Component {
 };
 const mapDispatchToProps = (dispatch, props) => ({
     editExpense: (expense, id) => (dispatch(editExpense(expense, id))),
-    removeExpense: (data) => (dispatch(removeExpense(data))),
+    startRemoveExpense: (id) => (dispatch(startRemoveExpense(id))),
 });
 
 // If your mapDispatchToProps function is declared as taking two parameters, it will be called with dispatch as the first parameter and the props passed to the connected component as the second parameter, and will be re-invoked whenever the connected component receives new props. (The second parameter is normally referred to as ownProps by convention.)

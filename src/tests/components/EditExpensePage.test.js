@@ -5,15 +5,15 @@ import toJSON from 'enzyme-to-json';
 import { EditExpensePage } from '../../components/EditExpensePage';
 import expenses from '../fixtures/expenses';
 
-let editExpense, history, wrapper, removeExpense;
+let editExpense, history, wrapper, startRemoveExpense;
 // each test can then just focus on using them. also these three become resuable
 beforeEach(() => {
     editExpense = jest.fn();
-    removeExpense = jest.fn();
+    startRemoveExpense = jest.fn();
     history = { push: jest.fn() };
     wrapper = shallow(<EditExpensePage
         editExpense={editExpense}
-        removeExpense={removeExpense}
+        startRemoveExpense={startRemoveExpense}
         history={history}
         expense={expenses[2]}
     />);
@@ -34,7 +34,7 @@ test('should handle onSubmit', () => {
 
 test('should handle onClick', () => {
     wrapper.find('button').simulate('click');   // here is a user action, need to simulate
-    expect(removeExpense).toHaveBeenLastCalledWith({ id: expenses[2].id });
+    expect(startRemoveExpense).toHaveBeenLastCalledWith({ id: expenses[2].id });
     expect(history.push).toHaveBeenLastCalledWith('/');
 
 });

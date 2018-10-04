@@ -1,5 +1,5 @@
 // Actions for expenses
-import uuid from 'uuid';
+// import uuid from 'uuid';
 import database from '../firebase/firebase';
 // action generators
 // ADD-EXPENSE
@@ -54,6 +54,15 @@ export const removeExpense = ({ id } = {}) => ({
     type: 'REMOVE_EXPENSE',
     id
 });
+
+export const startRemoveExpense = ({ id }) => {
+    return (dispatch) => {
+        return database.ref(`expenses/${id}`).remove().then(() => {
+            // once it is removed from database, dispatch action
+            dispatch(removeExpense({ id }));
+        });
+    }
+}
 // EDIT_EXPENSE
 export const editExpense = (id, updates) => ({
     type: 'EDIT_EXPENSE',
@@ -83,7 +92,7 @@ export const startSetExpenses = () => {
                     ...childSnapshot.val()
                 })
             });
-            dispatch(setExpenses(expenses))
+            dispatch(setExpenses(expenses));
         });
     }
 };

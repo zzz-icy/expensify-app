@@ -7,7 +7,7 @@
 // Also under the alias: it(name, fn, timeout)
 
 // The first argument is the test name; the second argument is a function that contains the expectations to test. The third argument (optional) is timeout (in milliseconds) for specifying how long to wait before aborting. Note: The default timeout is 5 seconds.
-import { addExpense, editExpense, removeExpense, startAddExpense, setExpenses, startSetExpenses } from '../../actions/expenses';
+import { addExpense, editExpense, removeExpense, startRemoveExpense, startAddExpense, setExpenses, startSetExpenses } from '../../actions/expenses';
 import configureStore from 'redux-mock-store' //ES6 modules
 import thunk from 'redux-thunk';
 import database from '../../firebase/firebase';
@@ -35,6 +35,25 @@ test('should setup remove expense action object', () => {
         id: '123abc'
     });
 });
+
+xit("skip it for now", () => {
+    test('should remove from database', () => {
+        const store = createMockStore({});
+        const id = expenses[2].id;
+        store.dispatch(startRemoveExpense({ id })).then(() => {
+            const actions = store.getActions();
+            expect(actions[0]).toEqual({
+                type: 'REMOVE_EXPENSE',
+                id
+            });
+            return database.ref(`expenses/${id}`).once('value');
+        }).then((snapshot) => {
+            expect(snapshot.val()).toBeFalsy();
+            done();
+        });
+    });
+});
+
 
 test('should setup edit expense action object', () => {
     const action = editExpense('123abc', { amount: 10 });
@@ -189,3 +208,18 @@ test('should fetch the expenses from firebase', () => {
         done();
     });
 });
+
+
+// data already set in the beforeEach()
+// test('should fetch the expenses from firebase', () => {
+//     const store = createMockStore({});
+
+//     store.dispatch(startRemoveExpense()).then(() => {
+//         const actions = store.getActions({});
+//         expect(actions[0]).toEqual({
+//             type: 'SET_EXPENSES',
+//             expenses
+//         });
+//         done();
+//     });
+// });
