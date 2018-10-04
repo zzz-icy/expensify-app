@@ -15,6 +15,13 @@ import expenses from '../fixtures/expenses';
 import "../setupTests.js";
 
 const createMockStore = configureStore([thunk]); // pass in an array of middlewares
+beforeEach((done) => {
+    const expensesData = {};
+    expenses.forEach(({ id, description, note, amount, createdAt }) => {
+        expensesData[id] = { description, note, amount, createdAt };
+    });
+    database.ref('expenses').set(expensesData).then(() => done());
+});
 
 test('should setup remove expense action object', () => {
     const action = removeExpense({ id: '123abc' });
@@ -79,8 +86,8 @@ test('should add expense to database and store', () => {
 
     const store = createMockStore({});
     // no id here
-    const expenseData = {
-        decription: 'Book',
+    const anotherExpenseData = {
+        description: 'Book',
         amount: 3000,
         note: 'deserve reading',
         createdAt: 1000
@@ -88,13 +95,13 @@ test('should add expense to database and store', () => {
     // when we are working with asynchronous test case, we have to tell jest a given test is asynchronous
     // if we do not do that, jest will not wait, everything will pass
     // need to force jest to wait until certain amount of time, call .done()
-    store.dispatch(startAddExpense(expenseData)).then(() => {
+    store.dispatch(startAddExpense(anotherExpenseData)).then(() => {
         const actions = store.getActions();
         expect(actions[0]).toEqual({
             type: 'ADD_EXPENSE',
             expense: {
                 id: expect.any(String),
-                ...expenseData
+                ...anotherExpenseData
             }
         });
         // 2. fetch data from database to see if it is corrctly saved there
@@ -103,9 +110,9 @@ test('should add expense to database and store', () => {
 
         // database.ref(`expenses/${action[0].expense.id}`).once('value').then((snapshot) => {
         //     expect(snapshot.val()).toEqual(expenseData);
-        return database.ref(`expenses/${action[0].expense.id}`).once('value');
+        return database.ref(`expenses/${actions[0].expense.id}`).once('value');
     }).then((snapshot) => {
-        expect(snapshot.val()).toEqual(expenseData);
+        expect(snapshot.val()).toEqual(anotherExpenseData);
         done();
         // Jest will wait until the done callback is called before finishing the test.
         // If done() is never called, the test will fail, which is what you want to happen.
@@ -115,15 +122,18 @@ test('should add expense to database and store', () => {
     // how to test asynchronous, wait everything to finish
 });
 
+// except forEach, each test start from scratch, database will only shou the data affected by the last test
+// need to clear the test database to make the test pass
 test('should add expense with default to database and store', () => {
     const store = createMockStore({});
     // no id here
     const expenseDefaults = {
-        decription: '',
+        description: '',
         amount: 0,
         note: '',
         createdAt: 0
-    }
+    };
+
     store.dispatch(startAddExpense({})).then(() => {
         const actions = store.getActions();
         expect(actions[0]).toEqual({
@@ -133,7 +143,7 @@ test('should add expense with default to database and store', () => {
                 ...expenseDefaults
             }
         });
-        return database.ref(`expenses/${action[0].expense.id}`).once('value');
+        return database.ref(`expenses/${actions[0].expense.id}`).once('value');
     }).then((snapshot) => {
         expect(snapshot.val()).toEqual(expenseDefaults);
         done();
