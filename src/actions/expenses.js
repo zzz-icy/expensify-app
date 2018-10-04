@@ -60,3 +60,30 @@ export const editExpense = (id, updates) => ({
     id,
     updates
 });
+
+// SET_EXPENSES
+export const setExpenses = (expenses) => ({
+    type: 'SET_EXPENSES',
+    expenses
+});
+
+// 1. fetch all expenses data
+// 2. Parse that data into an array, cause data from firebase are nested objects with the id as the key for each expense
+// 3. dispatch SET_EXPENSES
+
+export const startSetExpenses = () => {
+    return (dispatch) => {
+
+        // add return so that we can chain .then() in the app.js
+        return database.ref('expenses').once('value').then((snapshot) => {
+            const expenses = [];
+            snapshot.forEach((childSnapshot) => {
+                expenses.push({
+                    id: childSnapshot.key,
+                    ...childSnapshot.val()
+                })
+            });
+            dispatch(setExpenses(expenses))
+        });
+    }
+};

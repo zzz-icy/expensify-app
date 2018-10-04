@@ -8,7 +8,7 @@ import { Provider } from 'react-redux';
 // https://github.com/reduxjs/react-redux
 // We're going to be using the 'Provider' component once at the root of our application(app.js) and we're going to be using 'connect' for every single component that needs to connect to the redux store.
 import './styles/styles.scss';
-import { addExpense } from './actions/expenses';
+import { startSetExpenses } from './actions/expenses';
 // import { setTextFilter } from './actions/filters';
 // import getVisibleExpenses from './selectors/expenses';
 import AppRouter from './routers/AppRouter';
@@ -46,7 +46,15 @@ const jsx = (
     </Provider>
 );
 
-ReactDOM.render(jsx, document.getElementById('app'));
+ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
+
+// startSetExpenses will retura a promise
+
+store.dispatch(startSetExpenses()).then(() => {
+    ReactDOM.render(jsx, document.getElementById('app'));
+
+});;
+
 
 
 // <Switch>
