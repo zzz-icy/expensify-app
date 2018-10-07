@@ -2,7 +2,7 @@
 import React from 'react';
 // import ReactShallowRenderer from 'react-test-renderer/shallow'; // ES6
 import { shallow } from 'enzyme';
-import Header from '../../components/Header';
+import { Header } from '../../components/Header'; //unconnected version
 import "../setupTests.js";
 // Convert Enzyme wrappers to a format compatible with Jest snapshot testing.
 
@@ -25,5 +25,9 @@ test('should render header correctly', () => {
     // expect(wrapper.find('h1').text()).toBe('Expensify');
 
 });
+
+test('should dispatch startLogout when click button', () => {
+
+})
 
 
