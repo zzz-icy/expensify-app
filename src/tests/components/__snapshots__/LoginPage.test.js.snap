@@ -5,7 +5,9 @@ exports[`should render LoginPage properly 1`] = `
   <p>
     This is my LoginPage component!
   </p>
-  <button>
+  <button
+    onClick={[Function]}
+  >
     Login
   </button>
 </div>

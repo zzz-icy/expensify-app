@@ -5,7 +5,7 @@ import { startLogout } from '../actions/auth';
 
 // https://reacttraining.com/react-router/web/api/NavLink
 
-const Header = (props) => (
+export const Header = (props) => (
     <header>
         <h1> Expensify</h1>
         {/*A special version of the <Link> that will add styling attributes to the rendered element when it matches the current URL.Adde is-active class to sass style file*/}

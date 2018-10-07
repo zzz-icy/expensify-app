@@ -2,7 +2,7 @@ import React from 'react';
 import { connect } from 'react-redux';
 import { startLogin } from '../actions/auth';
 
-const LoginPage = (props) => (
+export const LoginPage = (props) => (
     <div>
         <p>This is my LoginPage component!</p>
         <button
