@@ -1,5 +1,6 @@
 import React from 'react';
-import { BrowserRouter, Route, Switch } from 'react-router-dom';
+import { Router, Route, Switch } from 'react-router-dom';
+import createHistory from 'history/createBrowserHistory';
 import ExpenseDashboardPage from '../components/ExpenseDashboardPage';
 import AddExpensePage from '../components/AddExpensePage';
 import EditExpensePage from '../components/EditExpensePage';
@@ -8,11 +9,15 @@ import LoginPage from '../components/LoginPage';
 import NotFoundPage from '../components/NotFoundPage';
 import Header from '../components/Header';
 
+// if not this, do not have access to history outside any component
+// make our own history
+export const history = createHistory();
 
 const AppRouter = () => (
     // only expects child length of 1
-
-    <BrowserRouter>
+    // then in app.js we can use the 'history', it's the exact same 'history' use in the component to redirect
+    <Router history={history}>
+        {/*<BrowserRouter>*/}
         <div>
             <Header />
             <Switch>
@@ -25,7 +30,8 @@ const AppRouter = () => (
                 <Route component={NotFoundPage} /> {/* do not need path*/}
             </Switch>
         </div>
-    </BrowserRouter>
+        {/*</BrowserRouter>*/}
+    </Router>
 );
 
 export default AppRouter;

@@ -9,15 +9,17 @@ import { Provider } from 'react-redux';
 // We're going to be using the 'Provider' component once at the root of our application(app.js) and we're going to be using 'connect' for every single component that needs to connect to the redux store.
 import './styles/styles.scss';
 import { startSetExpenses } from './actions/expenses';
+import { login, logout } from './actions/auth';
 // import { setTextFilter } from './actions/filters';
 // import getVisibleExpenses from './selectors/expenses';
-import AppRouter from './routers/AppRouter';
+import AppRouter, { history } from './routers/AppRouter';
 import configureStore from './store/configureStore';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
 import './styles/styles.scss';
 import './firebase/firebase';
 import { firebase } from './firebase/firebase';
+
 
 const store = configureStore();
 
@@ -51,17 +53,34 @@ ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
 
 // startSetExpenses will retura a promise
 
-store.dispatch(startSetExpenses()).then(() => {
-    ReactDOM.render(jsx, document.getElementById('app'));
+let hasRendered = false;
+const renderApp = () => {  // so that the app only render once
+    if (!hasRendered) {
+        ReactDOM.render(jsx, document.getElementById('app'));
+        hasRendered = true;
+    }
+    // if has rendered then do nothing
+}
 
-});
 
 
 firebase.auth().onAuthStateChanged((user) => {
     if (user) {
-        console.log('log in');
+        // console.log(user.uid);  // need a reducer and user the uid to authenticate user, whether certain pages are allowed to be seen
+        store.dispatch(login(user.uid));  // should not be in the startLogin, for the case when user first visit the app
+        store.dispatch(startSetExpenses()).then(() => {
+            // ReactDOM.render(jsx, document.getElementById('app'));
+            // if we already in the app, we login and logout, we do not want to rerender everything
+            renderApp();
+            if (history.location.pathname === '/') {
+                history.push('/dashboard');
+            }
+        });
     } else {
-        console.log('log out');
+        // ReactDOM.render(jsx, document.getElementById('app'));
+        store.dispatch(logout());
+        renderApp();
+        history.push('/');  // go to the login page
     }
 });
 
