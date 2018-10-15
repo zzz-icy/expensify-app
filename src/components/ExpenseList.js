@@ -30,6 +30,7 @@ export const ExpenseList = (props) => {
 
 // [mapStateToProps(state, [ownProps]): stateProps] (Function):  If this argument is specified, the new component will subscribe to Redux store updates. This means that any time the store is updated, mapStateToProps will be called. The results of mapStateToProps must be a plain object, which will be merged into the component’s props. If you don't want to subscribe to store updates, pass null or undefined in place of mapStateToProps.
 const mapStateToProps = (state) => {
+    console.log(state);
     return ({
         // use selector here
         // we always want the filtered result to present
