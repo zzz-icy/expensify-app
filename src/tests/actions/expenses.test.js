@@ -23,13 +23,15 @@ import database from '../../firebase/firebase';
 import expenses from '../fixtures/expenses';
 import "../setupTests.js";
 
+const uid = "thisismytestuid";
 const createMockStore = configureStore([thunk]); // pass in an array of middlewares
+
 beforeEach((done) => {
     const expensesData = {};
     expenses.forEach(({ id, description, note, amount, createdAt }) => {
         expensesData[id] = { description, note, amount, createdAt };
     });
-    database.ref('expenses').set(expensesData).then(() => done());
+    database.ref(`users/${uid}/expenses`).set(expensesData).then(() => done());
 });
 
 test('should setup remove expense action object', () => {
@@ -47,7 +49,7 @@ test('should setup remove expense action object', () => {
 
 xit("skip it for now", () => {
     test('should remove from database', () => {
-        const store = createMockStore({});
+        const store = createMockStore({ auth: { uid } });
         const id = expenses[2].id;
         store.dispatch(startRemoveExpense({ id })).then(() => {
             const actions = store.getActions();
@@ -55,7 +57,7 @@ xit("skip it for now", () => {
                 type: 'REMOVE_EXPENSE',
                 id
             });
-            return database.ref(`expenses/${id}`).once('value');
+            return database.ref(`users/${uid}/expenses/${id}`).once('value');
         }).then((snapshot) => {
             expect(snapshot.val()).toBeFalsy();
             done();
@@ -75,7 +77,7 @@ test('should setup edit expense action object', () => {
 
 xit('skip it for now', () => {
     test('should edit data in the  database', () => {
-        const store = createMockStore();
+        const store = createMockStore({ auth: { uid } });
         const id = expenses[2].id;
         const updates = {
             amount: 6000
@@ -87,7 +89,7 @@ xit('skip it for now', () => {
                 id,
                 updates
             });
-            return database.ref(`expenses/${id}`).once('value');
+            return database.ref(`users/${uid}/expenses/${id}`).once('value');
         }).then((snapshot) => {
             // expect(snapshot.val()).toEqual({
             //     ...expenses[2],
@@ -141,7 +143,7 @@ xit('skip it for now', () => {
 
         // The simplest usecase is for synchronous actions. In this example, we will test if the addTodo action returns the right payload. redux-mock-store saves all the dispatched actions inside the store instance. You can get all the actions by calling store.getActions(). Finally, you can use any assertion library to test the payload.
 
-        const store = createMockStore({});
+        const store = createMockStore({ auth: { uid } });
         // no id here
         const anotherExpenseData = {
             description: 'Book',
@@ -167,7 +169,7 @@ xit('skip it for now', () => {
 
             // database.ref(`expenses/${action[0].expense.id}`).once('value').then((snapshot) => {
             //     expect(snapshot.val()).toEqual(expenseData);
-            return database.ref(`expenses/${actions[0].expense.id}`).once('value');
+            return database.ref(`users/${uid}/expenses/${actions[0].expense.id}`).once('value');
         }).then((snapshot) => {
             expect(snapshot.val()).toEqual(anotherExpenseData);
             done();
@@ -180,7 +182,7 @@ xit('skip it for now', () => {
     });
 
     test('should add expense with default to database and store', () => {
-        const store = createMockStore({});
+        const store = createMockStore({ auth: { uid } });
         // no id here
         const expenseDefaults = {
             description: '',
@@ -198,7 +200,7 @@ xit('skip it for now', () => {
                     ...expenseDefaults
                 }
             });
-            return database.ref(`expenses/${actions[0].expense.id}`).once('value');
+            return database.ref(`users/${uid}/expenses/${actions[0].expense.id}`).once('value');
         }).then((snapshot) => {
             expect(snapshot.val()).toEqual(expenseDefaults);
             done();
@@ -231,7 +233,7 @@ test('should setup set expenses action object with data', () => {
 
 // data already set in the beforeEach()
 test('should fetch the expenses from firebase', () => {
-    const store = createMockStore({});
+    const store = createMockStore({ auth: { uid } });
 
     store.dispatch(startSetExpenses()).then(() => {
         const actions = store.getActions({});
