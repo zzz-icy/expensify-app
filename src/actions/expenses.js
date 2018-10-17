@@ -28,7 +28,8 @@ export const addExpense = (expense) => (
 
 
 export const startAddExpense = (expenseData = {}) => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
         const {
             description = '',
             note = '',
@@ -37,7 +38,7 @@ export const startAddExpense = (expenseData = {}) => {
         } = expenseData;
         const expense = { description, note, amount, createdAt };
         // add return so that we can chain .then() in the test
-        return database.ref('expenses').push(expense).then((ref) => { //.then() gets called with the ref, so we have access to the id 
+        return database.ref(`users/${uid}/expenses`).push(expense).then((ref) => { //.then() gets called with the ref, so we have access to the id 
             dispatch(addExpense(
                 {
                     id: ref.key,
@@ -90,10 +91,11 @@ export const setExpenses = (expenses) => ({
 // 3. dispatch SET_EXPENSES
 
 export const startSetExpenses = () => {
-    return (dispatch) => {
+    return (dispatch, getState) => {
+        const uid = getState().auth.uid;
 
         // add return so that we can chain .then() in the app.js
-        return database.ref('expenses').once('value').then((snapshot) => {
+        return database.ref(`users/${uid}/expenses`).once('value').then((snapshot) => {
             const expenses = [];
             snapshot.forEach((childSnapshot) => {
                 expenses.push({
