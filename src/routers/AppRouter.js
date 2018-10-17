@@ -4,11 +4,10 @@ import createHistory from 'history/createBrowserHistory';
 import ExpenseDashboardPage from '../components/ExpenseDashboardPage';
 import AddExpensePage from '../components/AddExpensePage';
 import EditExpensePage from '../components/EditExpensePage';
-import HelpPage from '../components/HelpPage';
 import LoginPage from '../components/LoginPage';
 import NotFoundPage from '../components/NotFoundPage';
 import PrivateRoute from '../components/PrivateRoute';
-
+import PublicRoute from '../components/PublicRoute';
 // if not this, do not have access to history outside any component
 // make our own history
 export const history = createHistory();
@@ -20,12 +19,11 @@ const AppRouter = () => (
         {/*<BrowserRouter>*/}
         <div>
             <Switch>
-                <Route exact path="/" component={LoginPage} />
+                <PublicRoute exact path="/" component={LoginPage} />
                 <PrivateRoute path="/dashboard" component={ExpenseDashboardPage} />
                 <PrivateRoute path="/create" component={AddExpensePage} />
                 <PrivateRoute path="/edit/:id" component={EditExpensePage} />
                 {/* /:id will dynamically match whater comes after the forward slash, id is gonna be in the props.match.params*/}
-                <Route path="/help" component={HelpPage} />
                 <Route component={NotFoundPage} /> {/* do not need path*/}
             </Switch>
         </div>
