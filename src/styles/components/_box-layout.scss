@@ -1,0 +1,25 @@
+.box-layout {
+    // background:url('../../../public/images/bg.jpg');
+    // The public folder is the root of your web server.
+    background:url('/images/bg.jpg');
+    background-size:cover;
+    height: 100vh; // vh viewport height
+    width:100vw; // vw viewport width
+    display:flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.box-layout__box {
+
+background: fade-out(white,0.15);
+border: radius 3px;
+text-align: center;
+width:25rem;
+padding: $l-size $m-size; // top+bottom right+left
+}
+
+.box-layout__title {
+    margin: 0 0 $m-size 0;
+    line-height: 1;
+}

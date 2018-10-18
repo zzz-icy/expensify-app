@@ -4,10 +4,13 @@
 html {
     font-size: 62.5%; // 16*0.625=10, so now 1rem = 10px
 }
+
 body{
+    color:$dark-grey;
     // background: $dark-blue;
     font-family: Helvetica, Arial, sans-serif;  // golobal font family
     font-size: $m-size; // 16px
+    line-height:1.6;
 }
 
 button {
