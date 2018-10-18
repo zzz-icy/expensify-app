@@ -1,0 +1,22 @@
+.input-group {
+display:flex;
+flex-direction: column; // for mobile
+// align-items: ;
+margin-bottom:$m-size;
+// flex-wrap: wrap;
+// for larger screen
+@media (min-width: $desktop-breakpoint) {
+    flex-direction: row;
+    margin-bottom:$l-size;
+
+}
+}
+
+.input-group__item {
+margin-bottom:$s-size;
+// height: 4.8rem;
+@media (min-width: $desktop-breakpoint) {
+    margin:0 $s-size 0 0;
+
+}
+}
