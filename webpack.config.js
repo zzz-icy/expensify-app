@@ -32,7 +32,9 @@ module.exports = (env) => {
     const CSSExtract = new ExtractTextPlugin('styles.css');
     // It moves all the required *.css modules in entry chunks into a separate CSS file. So your styles are no longer inlined into the JS bundle, but in a separate CSS file (styles.css). If your total stylesheet volume is big, it will be faster because the CSS bundle is loaded in parallel to the JS bundle.
     return {
-        entry: './src/app.js',//
+        // babel-polyfill will go through the process adding supports for us 
+        // we can have multiple entry
+        entry: ['babel-polyfill', './src/app.js'],//
         output: {
             path: path.join(__dirname, 'public', 'dist'), // has to be absolute
             filename: 'bundle.js'
