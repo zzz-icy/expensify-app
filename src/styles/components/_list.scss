@@ -1,0 +1,67 @@
+.list-header{
+background: $off-white;
+border: 1px solid darken($off-white,7%);
+color: $grey;
+display:flex;
+justify-content: space-between;
+padding: $s-size $m-size;
+}
+
+// this margin, when we scroll down to the bottom, we have some space 
+.list-body{
+    margin-bottom:$m-size;
+    @media(min-width:$desktop-breakpoint){
+        margin-bottom:$l-size;
+    }
+}
+.list-item{
+    // we do not want border on all side, otherwise will 2px
+    border: 1px solid darken($off-white,7%);
+    border-top:none; // just remove the top border
+    color: $dark-grey;
+    padding: $s-size;
+    display:flex;
+    flex-direction: column;
+    // css property, amount of time,function
+    transition: background, 0.3s, ease;
+    &:hover{
+        background:$off-white;
+    }
+    // same as if added below .list-item:hover
+    @media(min-width:$desktop-breakpoint){
+        flex-direction: row;
+        justify-content: space-between;
+        align-items: center;
+
+    }
+}
+
+.list-item__title{
+margin:0;
+word-break:break-all; // for long string without space
+}
+
+.list-item__subtitle{
+    color: $grey;
+    font-size:$font-size-small;
+
+}
+
+.list-data{
+    margin: $s-size 0 0 0;
+    @media (min-width:$desktop-breakpoint){
+        margin: 0;
+        padding-left: $s-size;
+
+    }
+}
+
+.list-item__message{
+    justify-content: center;
+    align-items: center;
+    color: $grey;
+    padding: $m-size;
+    &:hover{
+        background:none;
+    }
+}

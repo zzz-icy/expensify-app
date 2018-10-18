@@ -7,15 +7,21 @@ const ExpenseListItem = (props) => {
     // const expenses = props.expenses;
     // console.log(props);
     return (
-        <div>
-            <Link to={`/edit/${props.data.id}`}><h3> {props.data.description} </h3></Link>
-            <p>
+        //  make everywhere clickable 
+        <Link
+            className="list-item"
+            to={`/edit/${props.data.id}`}
+        >
+            <div>
+                <h3 className="list-item__title"> {props.data.description} </h3>
+                <span className="list-item__subtitle">
+                    {moment(props.data.createdAt).format('MMMM Do, YYYY')}
+                </span>
+            </div>
+            <h3 className="list-item__data">
                 {numeral(props.data.amount / 100).format('$0,0.00')}
-                -
-                {moment(props.data.createdAt).format('MMMM Do, YYYY')}
-            </p>
-
-        </div>
+            </h3>
+        </Link>
     );
 };
 
