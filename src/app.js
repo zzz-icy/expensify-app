@@ -13,6 +13,7 @@ import { login, logout } from './actions/auth';
 // import { setTextFilter } from './actions/filters';
 // import getVisibleExpenses from './selectors/expenses';
 import AppRouter, { history } from './routers/AppRouter';
+import LoadingPage from './components/LoadingPage';
 import configureStore from './store/configureStore';
 import 'react-dates/initialize';
 import 'react-dates/lib/css/_datepicker.css';
@@ -49,10 +50,7 @@ const jsx = (
     </Provider>
 );
 
-ReactDOM.render(<p>Loading...</p>, document.getElementById('app'));
-
 // startSetExpenses will retura a promise
-
 let hasRendered = false;
 const renderApp = () => {  // so that the app only render once
     if (!hasRendered) {
@@ -62,6 +60,7 @@ const renderApp = () => {  // so that the app only render once
     // if has rendered then do nothing
 }
 
+ReactDOM.render(<LoadingPage />, document.getElementById('app'));
 
 
 firebase.auth().onAuthStateChanged((user) => {
