@@ -21,7 +21,7 @@ export class ExpensesSummary extends React.Component {
                         {expenseWord} totalling&nbsp;
                         <span>{formattedExpneseTotal}</span>&nbsp;
                     </h1>
-                    <div lassName="page-header__actions">
+                    <div className="page-header__actions">
                         <Link className="button" to="/create"> Add Expense </Link>
                     </div>
                 </div>

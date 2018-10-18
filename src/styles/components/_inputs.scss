@@ -13,3 +13,8 @@ font-weight:300;
 // we can then add more
 
 }
+
+.textarea {
+@extend .text-input;
+height:10rem;
+}

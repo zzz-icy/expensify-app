@@ -85,42 +85,46 @@ class ExpenseForm extends React.Component {
         // console.log(this.props.expense);
 
         return (
-            <div>
-                {this.state.error && <p>{this.state.error}</p>}
-                <form onSubmit={this.onSubmit} >
-                    <input
-                        type='text'
-                        placeholder='Description'
-                        autoFocus
-                        value={this.state.description}
-                        onChange={this.onDescriptionChange}
-                    />
-                    <input
-                        type='text'
-                        placeholder='Amount'
-                        autoFocus
-                        value={this.state.amount}
-                        onChange={this.onAmountChange}
-
-                    />
-                    <SingleDatePicker
-                        date={this.state.createdAt} // momentPropTypes.momentObj or null
-                        onDateChange={this.onDateChange} // PropTypes.func.isRequired
-                        focused={this.state.calendarFocused} // PropTypes.bool
-                        onFocusChange={this.onFocusChange} // PropTypes.func.isRequired
-                        numberOfMonths={1}
-                        isOutsideRange={() => { false }} // so that we can choose past date
-                    />
-                    <textarea
-                        placeholder='Add a notes for your expense(optional).'
-                        value={this.state.note}
-                        onChange={this.onNoteChange}
-
-                    >
-                    </textarea>
-                    <button>Add Expense</button>
-                </form>
-            </div>
+            <form className="form" onSubmit={this.onSubmit} >
+                {this.state.error && <p className="form__error">{this.state.error}</p>}
+                <input
+                    type='text'
+                    placeholder='Description'
+                    autoFocus
+                    value={this.state.description}
+                    onChange={this.onDescriptionChange}
+                    className="text-input"
+                />
+                <input
+                    type='text'
+                    placeholder='Amount'
+                    autoFocus
+                    value={this.state.amount}
+                    onChange={this.onAmountChange}
+                    className="text-input"
+                />
+                <SingleDatePicker
+                    date={this.state.createdAt} // momentPropTypes.momentObj or null
+                    onDateChange={this.onDateChange} // PropTypes.func.isRequired
+                    focused={this.state.calendarFocused} // PropTypes.bool
+                    onFocusChange={this.onFocusChange} // PropTypes.func.isRequired
+                    numberOfMonths={1}
+                    isOutsideRange={() => { false }} // so that we can choose past date
+                    block
+                // block has to be added , or content-container not working for this 
+                />
+                <textarea
+                    placeholder='Add a notes for your expense(optional).'
+                    value={this.state.note}
+                    onChange={this.onNoteChange}
+                    className="textarea"
+                >
+                </textarea>
+                {/* to make button not the direct children, then not full width */}
+                <div>
+                    <button className="button">Save Expense</button>
+                </div>
+            </form>
         );
     }
 }

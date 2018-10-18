@@ -11,6 +11,10 @@
     text-decoration: none;
     line-height:1;
 }
+.button--secondary {
+    background:#888;   // will overwrite the background in the button
+}
+
 
 .button--link {
     background:none;   // will overwrite the background in the button
