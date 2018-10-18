@@ -1,0 +1,12 @@
+.show-for-mobile{
+@media (min-width: $desktop-breakpoint){
+    display:none;
+}
+}
+
+.show-for-desktop{
+    // - 0.1rem to make sure both not working 
+    @media (max-width: $desktop-breakpoint - 0.1rem){ 
+        display:none;
+    }
+}

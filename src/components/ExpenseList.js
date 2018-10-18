@@ -9,7 +9,15 @@ export const ExpenseList = (props) => {
     // console.log(props.expenses);
     const expenses = props.expenses;
     return (
-        <div>
+        <div className="content-container">
+            <div>
+                {/* show expenses only for mobile devices*/}
+                <div className="show-for-mobile">Expenses</div>
+                {/* only for wider screen*/}
+                <div className="show-for-desktop">Expense</div>
+                <div className="show-for-desktop">Amount</div>
+            </div>
+
             {
                 props.expenses.length === 0 ?
                     (
@@ -17,7 +25,9 @@ export const ExpenseList = (props) => {
                     ) :
                     (
                         expenses.map(
-                            (item) => (<ExpenseListItem data={item} key={item.id} />)
+                            (item) => (
+                                <ExpenseListItem data={item} key={item.id} />
+                            )
                             //<ExpenseListItem data={item} {...item} />
                             // if the data is passed in like {...item}, in ExpenseListItem will can use the destructure version
                         )
