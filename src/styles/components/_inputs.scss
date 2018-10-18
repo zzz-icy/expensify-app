@@ -1,0 +1,9 @@
+// some 3rd party is using generic element internally, so we do not want to creat styles by selecting generic elements, which will mess up the 3rd party component style, we just create some new and apply
+
+.text-input {
+border:1px solid #cacccd;
+height:50px;
+padding:$s-size;
+font-size:$font-size-large;
+font-weight:300;
+}
