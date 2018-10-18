@@ -6,4 +6,12 @@
     padding: $s-size;
     font-weight:300;
     font-size:$font-size-large;
+    display:inline-block;
+    // It's because inline elements don't respect top or bottom margin/padding so we need to change it to inline-block so we can apply those styles.
+    text-decoration: none;
+    line-height:1;
+}
+
+.button--link {
+    background:none;   // will overwrite the background in the button
 }
