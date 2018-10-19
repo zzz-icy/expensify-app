@@ -15,11 +15,24 @@
 background: fade-out(white,0.15);
 border: radius 3px;
 text-align: center;
-width:25rem;
+width:35%;
 padding: $l-size $m-size; // top+bottom right+left
 }
 
 .box-layout__title {
     margin: 0 0 $m-size 0;
     line-height: 1;
+}
+.box-layout__info {
+    margin: $m-size 0 0 0;
+    line-height: 1.2;
+    color:$dark-blue;
+    font-size:$font-size-small;
+    // text-align: left;
+}
+
+.box-layout__infobox {
+display:flex;
+flex-direction: column;
+justify-content: flex-start;
 }
