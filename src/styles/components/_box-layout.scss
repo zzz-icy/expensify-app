@@ -15,7 +15,7 @@
 background: fade-out(white,0.15);
 border: radius 3px;
 text-align: center;
-width:35%;
+width:35rem;
 padding: $l-size $m-size; // top+bottom right+left
 }
 
@@ -35,4 +35,5 @@ padding: $l-size $m-size; // top+bottom right+left
 display:flex;
 flex-direction: column;
 justify-content: flex-start;
+word-break: break-all;
 }

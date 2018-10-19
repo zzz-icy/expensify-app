@@ -14,9 +14,9 @@ export const LoginPage = (props) => (
                 Login with Google
         </button>
             <div className="box-layout__infobox">
-                <span className="box-layout__info">(If you are not comfortable logging in with yours:</span>
-                <span className="box-layout__info">Account: hannah.guest12345@gmail.com</span>
-                <span className="box-layout__info">Password:Guest123!)</span>
+                <p className="box-layout__info">(If you are not comfortable logging in with yours:</p>
+                <p className="box-layout__info">Account: hannah.guest12345@gmail.com</p>
+                <p className="box-layout__info">Password:Guest123!)</p>
             </div>
         </div>
     </div>
